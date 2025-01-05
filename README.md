@@ -6,9 +6,9 @@ vbform version 0.5
 - [Screenshots](#screenshots)
 - [Limitations](#current-limitations)
 
-Little Javascript tool for managing volleyball team formations in a match. For the coach.
+Little Javascript tool for managing volleyball team formations in a match.
 
-The idea is to support the coach managing a team where the roles of the players are varying and wehn the team has dynamic roles (youth training).
+The idea is to support the coach managing a team where the roles of the players are varying and when the team has dynamic roles (youth training).
 
 Alpha - in progress, will be used first 2025-01-19 in a match with two teams to support the coaches controlling our formation.
 
@@ -36,7 +36,6 @@ Alpha - in progress, will be used first 2025-01-19 in a match with two teams to 
 
 ## Screenshots
 
-
 ![Alt-Text](doc/screenshot-table-members.png)
 ![Alt-Text](doc/screenshot-match-grid.png)
 ![Alt-Text](doc/screenshot-member-dialog.png)
@@ -45,7 +44,7 @@ Alpha - in progress, will be used first 2025-01-19 in a match with two teams to 
 
 - cookie solution untested (saving unsure)
 - not mobile-first
-- missing substitutions not
+- missing substitutions
 - missing automatic formation setup
 - missing support of 1-5 and 2-4
 - no special libero support 
