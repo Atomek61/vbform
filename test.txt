@@ -1,0 +1,15 @@
+1. 	Thurid 	1 		Wik 1 	
+	2. 	Jette 	2 		Wik 1 	
+	3. 	Juna 	3 		Wik 1 	
+	4. 	Kathi 	4 		Wik 1 	
+	5. 	Leni 	5 		Wik 1 	
+	6. 	Anna 	6 		Wik 1 	
+	7. 	Mia 	7 		Wik 1 	
+	8. 	Leticia 	8 		Wik 1 	
+	9. 	Anni 	9 		Wik 2 	
+	10. 	Lara 	10 		Wik 2 	
+	11. 	Frida 	11 		Wik 2 	
+	12. 	Amelia 	12 		Wik 2 	
+	13. 	Alisa 	13 		Wik 2 	
+	14. 	Pauline 	14 		Wik 2 	
+	15. 	Stine 	15 		Wik 2 	

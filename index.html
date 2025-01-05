@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>   
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+
+  <title>Volleyball Aufstellung</title>
+  <script src="vb.model.js"></script>
+  <script src="vb.controller.js"></script>
+  <link rel="stylesheet" href="index.css"/>
+  <script>
+    club = null;
+    clubPage = null;
+
+    window.onload = ()=>{
+      
+      // Model
+      club = new Club('');
+      club.loadW0809();
+      //club.asCookie = document.cookie;
+      //console.log(document.cookie);
+
+      // Controller
+      clubPage = new ClubPage('#club-page', club);
+      matchPage = new MatchPage('#match-page', clubPage);
+      clubPage.show();
+      matchPage.show(club.teams.byIndex(1).id);
+      club.match.players.byIndex(0).startingPos = 0;
+      club.match.players.byIndex(1).startingPos = 1;
+      club.match.players.byIndex(2).startingPos = 2;
+      club.match.players.byIndex(3).startingPos = 3;
+      club.match.players.byIndex(4).startingPos = 4;
+      club.match.players.byIndex(5).startingPos = 5;
+    };
+
+    window.addEventListener('beforeunload', () => {
+      document.cookie = club.asCookie;
+    });
+
+  </script>
+</head>
+<body>
+    
+<dialog id="dlg-single-value">
+  <h1>Eingabe</h1>
+  <table>
+    <tr>
+      <td><label for="user-input"></label></td>
+      <td><input type="text" name="user-input" tabindex="1"></td>
+    </tr>
+  </table>
+  <div class="button-bar">
+    <button name="button-cancel" class="cancel" tabindex="3">Abbrechen</button>
+    <button name="button-ok" class="ok" tabindex="2">OK</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-edit-member">
+  <h1>Spieler</h1>
+  <table>
+    <tr>
+      <td><label for="name-input">Trikotname</label></td>
+      <td><input type="text" name="name-input" tabindex="1"></td>
+    </tr>
+    <tr>
+      <td><label for="number-input">Trikot</label></td>
+      <td><input type="number" name="number-input" min="1" max="99" step="1" tabindex="2"></td>
+    </tr>
+    <tr>
+      <td><label for="team-select">Team</label></td>
+      <td>
+        <select name="team-select" tabindex="3">
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="year-input">Jahrgang</label></td>
+      <td>
+        <input type="number" name="year-input"  min="1900" max="2100" tabindex="4">
+      </td>
+    </tr>
+    <tr>
+      <td><label for="gender-select">Geschlecht</label></td>
+      <td>
+        <select name="gender-select" tabindex="5">
+          <option value="m">männlich</option>
+          <option value="w">weiblich</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td><label for="roles-input">Rollen</label></td>
+        <td><input type="text" name="roles-input" pattern="[AMZLD]*" tabindex="6"></td>
+    </tr>
+  </table>
+  <div class="button-bar">
+    <button name="button-cancel" class="cancel" tabindex="8">Abbrechen</button>
+    <button name="button-ok" type="submit" class="ok" tabindex="7" accesskey="o">OK</button>
+  </div>
+</dialog>
+
+<article id="club-page">
+  <button onclick="club.loadW0809()" >W0809</button>
+  <section>
+    <div class="title">
+      <h1>Verein</h1>
+    </div>	
+    <table id="club">
+      <tr>
+        <td id="btn-edit-clubname" class="btn rename" onclick="clubPage.renameClub()"></td><td id="club-name"></td>
+      </tr>
+    </table>
+  </section>
+  <section>
+    <div class="title">
+      <h1>Mannschaften</h1><div id="btn-create-team" class="btn add" onclick="club.createTeam()"></div>
+    </div>	
+    <table id="teams" class="object-table teams">
+    </table>
+  </section>
+  <section>
+    <div class="title">
+      <h1>Mitglieder</h1><div id="btn-create-member" class="btn add" onclick="club.createMember('Neues Mitglied')"></div>
+    </div>	
+    <table id="members" class="object-table members">
+    </table>
+  </section>
+</article>
+
+<article id="match-page">
+  <div class="match-level-1">
+    <div class="match-table-panel">
+      <section>
+        <div class="title">
+          <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div><h1>Aufstellung</h1>
+        </div>
+        <div id="team-name"></div>
+      </section>
+      <section>
+        <div class="title">
+          <h1>Spieler</h1>
+        </div>	
+        <table id="match-members" class="object-table players">
+        </table>
+      </section>
+    </div>
+    
+    <div id="match-grid">
+      <div class="match-tpanel">
+        <div id="match-log"></div>
+      </div>
+      <div class="match-lpanel">
+        <div class="match-display inset-box" id="match-rotation">
+          <div>Rotation</div>
+          <div class="display-rotation">0</div>
+        </div>
+        <div class="match-display inset-box" id="match-rotation">
+          <div></div>
+          <div id="display-watch">00:00</div>
+          <div id="display-clock">00:00:00</div>
+        </div>
+      </div>
+      <div class="match-court player-dropzone" id="match-court">
+      </div>
+      <div class="match-rpanel">
+        <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
+        <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
+        <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
+      </div>
+      <div class="match-bench bench-dropzone inset-box" id="match-bench"></div>
+    </div>
+  </div>
+</article>
+
+  </body>
+</html>

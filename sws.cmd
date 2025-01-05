@@ -1,0 +1,1 @@
+C:\sws\static-web-server --root .
