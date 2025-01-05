@@ -13,7 +13,7 @@ The idea is to support the coach managing a team where the roles of the players 
 Alpha - in progress, will be used first 2025-01-19 in a match with two teams to support the coaches controlling our formation.
 
 ## Idea
-------
+
 - Enter your teams
 - Enter your members
 - Assign members to the teams
@@ -23,7 +23,7 @@ Alpha - in progress, will be used first 2025-01-19 in a match with two teams to 
 - Manage substitutions (not yet implemented)
 
 ## Concepts
-----------
+
 - Static web site
 - Serverless, runs in your browser completely
 - Settings are stored in a cookie
@@ -35,14 +35,14 @@ Alpha - in progress, will be used first 2025-01-19 in a match with two teams to 
 - pure HTML,CSS,JavaScript,SVG
 
 ## Screenshots
--------------
+
 
 ![Alt-Text](doc/screenshot-table-members.png)
 ![Alt-Text](doc/screenshot-match-grid.png)
 ![Alt-Text](doc/screenshot-member-dialog.png)
 
 ## Current Limitations
----------------------
+
 - cookie solution untested (saving unsure)
 - not mobile-first
 - missing substitutions not
