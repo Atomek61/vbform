@@ -24,7 +24,7 @@ const MATCHROW = `
 <td>{{ROLES}}</td>
 `;
 
-const MATCHPLAYER = `<span>{{NUMBER}}</span><span>{{NAME}}</span>\n`;
+const MATCHPLAYER = `<div>{{NUMBER}}</div><div>{{NAME}}</div><div>{{ROLES}}</div>\n`;
 
 const TEAMOPTION = '<option value="{{ID}}">{{NAME}}</option>\n';
 
@@ -303,10 +303,7 @@ class MatchPage extends Page {
         var team = this.club.teams.byId(teamId);
         var match = this.club.createMatch(team);
         match.clockEnable = true;
-        this.playersContainer.innerHTML = '';
         this.courtContainer.innerHTML = '';
-        query('#team-name').innerHTML = match.name;
-        Page.updateContainer(this.membersContainer, 'tr', match.team.members, Page.updateMatchRow);
         Page.updateContainer(this.playersContainer, 'div', match.players,  MatchPage.updateBenchMember, 'player');
         this.benchPlayers = document.querySelectorAll('#match-bench > div');
         this.benchPlayers.forEach((element)=>{
@@ -329,7 +326,6 @@ class MatchPage extends Page {
     
     bindView() {
 
-        this.membersContainer = query('#match-members');
         this.playersContainer = query('#match-bench');
         this.courtContainer = query('#match-court');     
 
@@ -371,7 +367,7 @@ class MatchPage extends Page {
             var count = this.club.match.countStartingSix();
             var complete = count == 6;
             this.showButtons(complete);
-            this.showRotationButtons(complete);
+            //this.showRotationButtons(complete);
             this.log(complete ? `Mannschaft komplett` : `Mannschaft unvollständig - es fehlen ${6 - count}`);
             break;
         case 'rotation':
@@ -414,6 +410,7 @@ class MatchPage extends Page {
             'ID',       player.id.toString(),
             'NAME',     player.member.name,
             'NUMBER',   player.member.numberString,
+            'ROLES',    player.member.roles,
         ]);
     }
 
@@ -452,7 +449,11 @@ class MatchPage extends Page {
 
     showButtons(visible) {
         document.querySelectorAll('#match-grid .match-rpanel .btn').forEach((btn) => {
-            btn.style.visibility = visible ? 'visible' : 'hidden';
+            if (visible)
+                btn.classList.remove('btn-disable');
+            else
+                btn.classList.add('btn-disable');
+            //btn.style.visibility = visible ? 'visible' : 'hidden';
         });
     }
 
@@ -477,10 +478,10 @@ class MatchPage extends Page {
         query('#match-rotation > div:nth-child(2)').innerHTML = this.club.match.rotation;
     }
 
-    showRotationButtons(visible) {
-        query('#btn-rotate-forward').style.visibility = visible ? 'visible' : 'hidden';
-        query('#btn-rotate-backward').style.visibility = visible ? 'visible' : 'hidden';        
-    }
+    // showRotationButtons(visible) {
+    //     query('#btn-rotate-forward').style.visibility = visible ? 'visible' : 'hidden';
+    //     query('#btn-rotate-backward').style.visibility = visible ? 'visible' : 'hidden';        
+    // }
 
     updateClockPanel() {
         query('#display-clock').innerHTML = this.club.match.clockString;

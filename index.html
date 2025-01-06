@@ -131,46 +131,32 @@
 </article>
 
 <article id="match-page">
-  <div class="match-level-1">
-    <div class="match-table-panel">
-      <section>
-        <div class="title">
-          <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div><h1>Aufstellung</h1>
-        </div>
-        <div id="team-name"></div>
-      </section>
-      <section>
-        <div class="title">
-          <h1>Spieler</h1>
-        </div>	
-        <table id="match-members" class="object-table players">
-        </table>
-      </section>
+  <div id="match-grid">
+    <div class="match-tpanel">
+      <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div>
     </div>
-    
-    <div id="match-grid">
-      <div class="match-tpanel">
-        <div id="match-log"></div>
+    <div class="match-lpanel">
+      <div class="match-display inset-box" id="match-rotation">
+        <div>Rotation</div>
+        <div class="display-rotation">0</div>
       </div>
-      <div class="match-lpanel">
-        <div class="match-display inset-box" id="match-rotation">
-          <div>Rotation</div>
-          <div class="display-rotation">0</div>
-        </div>
-        <div class="match-display inset-box" id="match-rotation">
-          <div></div>
-          <div id="display-watch">00:00</div>
-          <div id="display-clock">00:00:00</div>
-        </div>
+      <div class="match-display inset-box" id="match-rotation">
+        <div></div>
+        <div id="display-watch">00:00</div>
+        <div id="display-clock">00:00:00</div>
       </div>
-      <div class="match-court player-dropzone" id="match-court">
-      </div>
-      <div class="match-rpanel">
-        <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
-        <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
-        <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
-      </div>
-      <div class="match-bench bench-dropzone inset-box" id="match-bench"></div>
+    </div>
+    <div class="match-court player-dropzone" id="match-court">
+    </div>
+    <div class="match-bench bench-dropzone inset-box" id="match-bench">
+    </div>
+    <div class="match-rpanel">
+      <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
+      <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
+      <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
+    </div>
+    <div class="match-bpanel">
+      <div id="match-log"></div>
     </div>
   </div>
 </article>

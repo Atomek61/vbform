@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="1500cm"
-   height="1300cm"
-   viewBox="0 0 15000 13000"
+   width="1800cm"
+   height="1100cm"
+   viewBox="0 0 18000 11000"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="court.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,13 +25,13 @@
      inkscape:document-units="mm"
      showgrid="true"
      showguides="true"
-     inkscape:zoom="0.056568542"
-     inkscape:cx="38519.642"
-     inkscape:cy="38652.224"
-     inkscape:window-width="1536"
-     inkscape:window-height="793"
+     inkscape:zoom="0.014142135"
+     inkscape:cx="14813.887"
+     inkscape:cy="26198.307"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
      inkscape:window-x="-8"
-     inkscape:window-y="334"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:lockguides="false">
@@ -93,8 +93,8 @@
        id="rect2"
        style="display:inline;fill:#f1f0e3;fill-opacity:1;stroke-width:1091.41;stroke-linecap:round"
        inkscape:label="lines"
-       d="M 2999.9998,0 V 9999.9999 H 12000 V 0 h -100 V 949.99989 H 3099.9999 V 0 Z m 100.0001,1050 H 11900 V 3850.0001 H 3099.9999 Z M 12200,3850.0001 v 100.0001 h 400 V 3850.0001 Z M 3099.9999,3950.0002 H 11900 V 9900.0004 H 3099.9999 Z"
-       sodipodi:nodetypes="cccccccccccccccccccccccc" />
+       d="M 2999.9998,0 V 9999.9999 H 12000 V 0 h -100 V 949.99989 H 3099.9999 V 0 Z m 100.0001,1050 H 11900 l -0,2850 H 3099.9998 Z m 9099.9991,2850 v 100.0001 h 400 V 3900 Z m -9099.9992,100.0001 h 8799.9992 l 0,5900.0003 H 3099.9999 Z M 11999.999,10200 h -100 v 400 h 100 z m -8899.9992,50 h -100 v 400 h 100 z"
+       sodipodi:nodetypes="cccccccccccccccccccccccccccccccccc" />
     <g
        id="g1"
        inkscape:label="net">
@@ -186,5 +186,65 @@
          style="font-size:1000px;stroke-width:50"
          x="7194.5312"
          y="6685.3516">6</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Drozone"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <g
+       id="g3"
+       style="stroke:#dc3939;stroke-width:100;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+       transform="translate(-0.10516357,-2050)">
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3"
+         width="2700"
+         height="4000"
+         x="3200"
+         y="3300"
+         ry="400.00003" />
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3-1"
+         width="2700.0002"
+         height="4000"
+         x="9100"
+         y="3300"
+         ry="400.00003" />
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3-8"
+         width="2799.79"
+         height="4000"
+         x="6100.2095"
+         y="3300"
+         ry="400.00006" />
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3-7"
+         width="2700"
+         height="4000"
+         x="3200"
+         y="7700"
+         ry="400.00003" />
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3-1-6"
+         width="2700.0002"
+         height="4000"
+         x="9100"
+         y="7700"
+         ry="400.00003" />
+      <rect
+         style="fill:none;stroke:#dc3939;stroke-width:100;stroke-linecap:round;stroke-dasharray:200, 200;stroke-dashoffset:210;stroke-opacity:0.318182"
+         id="rect3-8-1"
+         width="2799.79"
+         height="4000"
+         x="6100.2095"
+         y="7700"
+         ry="400.00006" />
+    </g>
   </g>
 </svg>
