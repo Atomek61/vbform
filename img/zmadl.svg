@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="320"
+   height="64"
+   viewBox="0 0 320 64.000005"
+   version="1.1"
+   id="svg138"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="zmadl.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview140"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     showguides="true"
+     inkscape:lockguides="false"
+     inkscape:zoom="1.829812"
+     inkscape:cx="101.92304"
+     inkscape:cy="170.23606"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid259"
+       empspacing="4"
+       originx="0"
+       originy="0"
+       spacingy="1"
+       spacingx="1"
+       units="px"
+       visible="true" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid261"
+       spacingy="64.000002"
+       spacingx="64.000002"
+       color="#e5001f"
+       opacity="0.14901961"
+       originx="0"
+       originy="0"
+       units="px"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs135" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#cd0f0f;stroke-width:3.78;stroke-linejoin:round"
+       id="path1"
+       cx="32"
+       cy="31.999998"
+       rx="28"
+       ry="27.999998" />
+    <rect
+       style="fill:#cd0f0f;stroke-width:3.78;stroke-linejoin:round"
+       id="rect1"
+       width="48"
+       height="47.999996"
+       x="72"
+       y="7.9999995"
+       ry="0" />
+    <path
+       style="fill:#cd0f0f;stroke-width:3.78;stroke-linejoin:round"
+       d="m 160,3.9999994 32,51.9999966 v 0 h -64 z"
+       id="path2"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#cd0f0f;stroke-width:3.78;stroke-linejoin:round"
+       d="M 228,3.9999999 260,56 v 0 h -64 z"
+       id="path2-6"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#cd0f0f;stroke-width:3.78;stroke-linejoin:round"
+       d="m 264,7.9999999 24,-10e-8 V 31.999998 l 24,0 v 23.999998 h -48 z"
+       id="path3"
+       sodipodi:nodetypes="ccccccc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:48px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:3.78;stroke-linejoin:round"
+       x="268.40234"
+       y="51.890621"
+       id="text3-17"><tspan
+         sodipodi:role="line"
+         id="tspan3-3"
+         x="268.40234"
+         y="51.890621"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Bold'">L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:40px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:3.78;stroke-linejoin:round"
+       x="18.689453"
+       y="45.242184"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         x="18.689453"
+         y="45.242184"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Bold'">Z</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:40px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:3.78;stroke-linejoin:round"
+       x="77.083984"
+       y="45.242184"
+       id="text3-4"><tspan
+         sodipodi:role="line"
+         id="tspan3-0"
+         x="77.083984"
+         y="45.242184"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Bold'">M</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:48px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:3.78;stroke-linejoin:round"
+       x="142.75"
+       y="46.218746"
+       id="text3-1"><tspan
+         sodipodi:role="line"
+         id="tspan3-4"
+         x="142.75"
+         y="46.218746"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Bold'">A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:48px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#ffffff;stroke-width:3.78;stroke-linejoin:round"
+       x="211.35938"
+       y="50.044281"
+       id="text3-1-4"><tspan
+         sodipodi:role="line"
+         id="tspan3-4-3"
+         x="211.35938"
+         y="50.044281"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman,  Bold'">D</tspan></text>
+  </g>
+</svg>
