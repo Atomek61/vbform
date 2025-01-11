@@ -1,15 +1,16 @@
-1. 	Thurid 	1 		Wik 1 	
-	2. 	Jette 	2 		Wik 1 	
-	3. 	Juna 	3 		Wik 1 	
-	4. 	Kathi 	4 		Wik 1 	
-	5. 	Leni 	5 		Wik 1 	
-	6. 	Anna 	6 		Wik 1 	
-	7. 	Mia 	7 		Wik 1 	
-	8. 	Leticia 	8 		Wik 1 	
-	9. 	Anni 	9 		Wik 2 	
-	10. 	Lara 	10 		Wik 2 	
-	11. 	Frida 	11 		Wik 2 	
-	12. 	Amelia 	12 		Wik 2 	
-	13. 	Alisa 	13 		Wik 2 	
-	14. 	Pauline 	14 		Wik 2 	
-	15. 	Stine 	15 		Wik 2 	
+    this.createMember('').loadFrom({name: 'Lara', number: 3, team: 'Wik 2', year: 2008, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Juna', number: 10, team: 'Wik 1', year: 2008, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Jette', number: 23, team: 'Wik 1', year: 2010, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Alisa', number: 27, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Mia', number: 8, team: 'Wik 2', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Amelia', number: 1, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AZL'});        
+        this.createMember('').loadFrom({name: 'Frida', number: 14, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Anna', number: 18, team: 'Wik 1', year: 2009, gender: 'w', roles: 'MA'});        
+        this.createMember('').loadFrom({name: 'Stine', number: 26, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Anni', number: 24, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Leni', number: 16, team: 'Wik 2', year: 2009, gender: 'w', roles: 'ZA'});        
+        this.createMember('').loadFrom({name: 'Thurid', number: 11, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Kathi', number: 13, team: 'Wik 1', year: 2008, gender: 'w', roles: 'AMZ'});        
+        this.createMember('').loadFrom({name: 'Pauline', number: 6, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Leticia', number: 25, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Emilia', number: 17, team: 'Wik 2', year: 2008, gender: 'w', roles: 'ZM'});

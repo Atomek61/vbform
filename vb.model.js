@@ -52,15 +52,19 @@ class Model {
     }
 
     readProp(container, name, defaultValue) {
-        return name in container ? container[name] : defaultValue;
+        if (name in container)
+            return container[name];
+        else
+            return defaultValue;
+        // return name in container ? container[name] : ;
     }
 
     storeTo(container) {
-        container.name = this._name;
+        container.name = this.name;
     }
 
     loadFrom(container) {
-        this._name = this.readProp(container, 'name', null);
+        this.name = this.readProp(container, 'name', null);
     }
 
 }
@@ -150,8 +154,10 @@ class Club extends Model {
 
     clear() {
         this.name = '';	
-        this._teams.clear();
-        this._members.clear();
+        while (this.teams.length > 0)
+            this.removeTeam(this.teams.byIndex(0));
+        while (this.members.length > 0)
+            this.removeMember(this.members.byIndex(0));
     }
 
     createTeam(name = null) {
@@ -170,7 +176,7 @@ class Club extends Model {
     }
 
     createMember(name = null, number = null) {
-        var member = this._members.add(new Member(this, name));
+        let member = this._members.add(new Member(this, name));
         member.number = number == null ? this.firstFreeNumber() : number;
         return member;
     }
@@ -217,14 +223,12 @@ class Club extends Model {
     }
 
     loadFrom(container) {
+        this.clear();
         super.loadFrom(container);
-        this._members.clear();
-        this._teams.clear();
         for (let store of container.teams)
-            this.createTeam(store.name)
-        for (let store of container.members) {
-            this.createMember(store.name, store.number).team = this.findTeam(store.team);
-        }
+            this.createTeam(store.name).loadFrom(store);
+        for (let store of container.members)
+            this.createMember(store.name, store.number).loadFrom(store);
     }
 
     set asCookie(cookie) {
@@ -232,20 +236,31 @@ class Club extends Model {
         for (let pair of cookies) {
             let cookie = pair.split('=');
             if (cookie[0] == 'vbclub100') {
-                this.loadFrom(JSON.parse(cookie[1]));
-                return;    
+                asJSON = cookie[1];
+                break;    
             }
         }
     }
 
     get asCookie() {
-        let container = new Object();
-        this.storeTo(container);
-        let json = JSON.stringify(container);
         let retention = new Date();
         retention.setTime(retention.getTime() + (365*24*60*60*1000));
-        return `vbclub100=${json};expires=${retention.toUTCString()};path=/`;
+        return `vbclub100=${asJSON};expires=${retention.toUTCString()};path=/`;
 //        return `vbclub100=${json};expires=${retention.toUTCString()};SameSite=true;secure=false;`;
+    }
+
+
+    get asJSON() {
+        let container = new Object();
+        this.storeTo(container);
+        return JSON.stringify(container);
+    }
+
+    set asJSON(value) {
+        if (value === null)
+            this.clear()
+        else
+            this.loadFrom(JSON.parse(value));
     }
 
     loadW0809() {
@@ -253,26 +268,42 @@ class Club extends Model {
         this.clear();
 
         this.name = 'Wiker SV';
-        let team1 = this.createTeam('Wik 1');
-        let team2 = this.createTeam('Wik 2');
+        let team1 = this.createTeam('Wiker SV 1');
+        let team2 = this.createTeam('Wiker SV 2');
 
         // List of example players
-        this.createMember('').loadFrom({name: 'Emmy', number: 3, team: 'Wik 2', year: 2008, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Karli', number: 10, team: 'Wik 1', year: 2008, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Juliana', number: 23, team: 'Wik 1', year: 2010, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Zoe', number: 27, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Marlie', number: 8, team: 'Wik 2', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Lea', number: 1, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AZL'});        
-        this.createMember('').loadFrom({name: 'Maike', number: 14, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Ivyna', number: 18, team: 'Wik 1', year: 2009, gender: 'w', roles: 'MA'});        
-        this.createMember('').loadFrom({name: 'Juliana', number: 26, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Hedwig', number: 24, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Theresa', number: 16, team: 'Wik 2', year: 2009, gender: 'w', roles: 'ZA'});        
-        this.createMember('').loadFrom({name: 'Hedwig', number: 11, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Milla', number: 13, team: 'Wik 1', year: 2008, gender: 'w', roles: 'AMZ'});        
-        this.createMember('').loadFrom({name: 'Alice', number: 6, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Lissy', number: 25, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Leila', number: 2, team: 'Wik 2', year: 2008, gender: 'w', roles: 'A'});
+        // this.createMember('').loadFrom({name: 'Emmy', number: 3, team: 'Wik 2', year: 2008, gender: 'w', roles: 'M'});        
+        // this.createMember('').loadFrom({name: 'Karli', number: 10, team: 'Wik 1', year: 2008, gender: 'w', roles: 'M'});        
+        // this.createMember('').loadFrom({name: 'Juliana', number: 23, team: 'Wik 1', year: 2010, gender: 'w', roles: 'AM'});        
+        // this.createMember('').loadFrom({name: 'Zoe', number: 27, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AM'});        
+        // this.createMember('').loadFrom({name: 'Marlie', number: 8, team: 'Wik 2', year: 2009, gender: 'w', roles: 'AZ'});        
+        // this.createMember('').loadFrom({name: 'Lea', number: 1, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AZL'});        
+        // this.createMember('').loadFrom({name: 'Maike', number: 14, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
+        // this.createMember('').loadFrom({name: 'Ivyna', number: 18, team: 'Wik 1', year: 2009, gender: 'w', roles: 'MA'});        
+        // this.createMember('').loadFrom({name: 'Juliana', number: 26, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
+        // this.createMember('').loadFrom({name: 'Hedwig', number: 24, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
+        // this.createMember('').loadFrom({name: 'Theresa', number: 16, team: 'Wik 2', year: 2009, gender: 'w', roles: 'ZA'});        
+        // this.createMember('').loadFrom({name: 'Hedwig', number: 11, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        // this.createMember('').loadFrom({name: 'Milla', number: 13, team: 'Wik 1', year: 2008, gender: 'w', roles: 'AMZ'});        
+        // this.createMember('').loadFrom({name: 'Alice', number: 6, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
+        // this.createMember('').loadFrom({name: 'Lissy', number: 25, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        // this.createMember('').loadFrom({name: 'Leila', number: 2, team: 'Wik 2', year: 2008, gender: 'w', roles: 'A'});
+        this.createMember('').loadFrom({name: 'Lara', number: 3, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Juna', number: 10, team: 'Wiker SV 1', year: 2008, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Jette', number: 23, team: 'Wiker SV 1', year: 2010, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Alisa', number: 27, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Mia', number: 8, team: 'Wiker SV 2', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Amelia', number: 1, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'AZL'});        
+        this.createMember('').loadFrom({name: 'Frida', number: 14, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Anna', number: 18, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'MA'});        
+        this.createMember('').loadFrom({name: 'Stine', number: 26, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'AM'});        
+        this.createMember('').loadFrom({name: 'Anni', number: 24, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Leni', number: 16, team: 'Wiker SV 2', year: 2009, gender: 'w', roles: 'ZA'});        
+        this.createMember('').loadFrom({name: 'Thurid', number: 11, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Kathi', number: 13, team: 'Wiker SV 1', year: 2008, gender: 'w', roles: 'AMZ'});        
+        this.createMember('').loadFrom({name: 'Pauline', number: 6, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'M'});        
+        this.createMember('').loadFrom({name: 'Leticia', number: 25, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'AZ'});        
+        this.createMember('').loadFrom({name: 'Emilia', number: 17, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'ZM'});
     }
 
 }
@@ -298,7 +329,7 @@ class Member extends Model {
     }
 
     set number(value) {
-        if (value!=this._number) {
+        if (value!==this._number) {
             this._number = value;
             this.changed('number');
         }
@@ -313,7 +344,7 @@ class Member extends Model {
     }
 
     set team(value) {
-        if (value != this._team) {
+        if (value !== this._team) {
             let oldTeam = this._team;
             this._team = value;
             if (oldTeam !== null)
@@ -329,7 +360,7 @@ class Member extends Model {
     }
 
     set year(value) {
-        if (value!=this._year) {
+        if (value!==this._year) {
             this._year = value;
             this.changed('year');
         }
@@ -340,7 +371,7 @@ class Member extends Model {
     }
 
     set gender(value) {
-        if (value!=this._gender) {
+        if (value!==this._gender) {
             this._gender = value;
             this.changed('gender');
         }
@@ -351,29 +382,29 @@ class Member extends Model {
     }
 
     set roles(value) {
-        if (value!=this._roles) {
-            this._roles = value;
+        if (value !== this._roles) {            
+            this._roles = value=='' ? null : value;
             this.changed('roles');
         }
     }
 
     storeTo(container) {
         super.storeTo(container);
-        container.number = this._number;
-        container.team = this._team === null ? null : this._team.name;
-        container.year = this._year;
-        container.gender = this._gender;
-        container.roles = this._roles; 
+        container.number    = this._number;
+        container.team      = this.team === null ? null : this.team.name;
+        container.year      = this.year;
+        container.gender    = this.gender;
+        container.roles     = this.roles; 
     }
 
     loadFrom(container) {
         super.loadFrom(container);
-        this.number = this.readProp(container, 'number', null);
-        let teamName = this.readProp(container, 'team', null);
-        this.team = this.club.teams.find((team)=>team.name == teamName);
-        this.year = this.readProp(container, 'year', null);
-        this.gender = this.readProp(container, 'gender', null);
-        this.roles = this.readProp(container, 'roles', null);
+        this.number     = this.readProp(container, 'number', null);
+        let teamName    = this.readProp(container, 'team', null);
+        this.team       = teamName === null ? null : this.club.teams.find((team)=>team.name == teamName);
+        this.year       = this.readProp(container, 'year', null);
+        this.gender     = this.readProp(container, 'gender', null);
+        this.roles      = this.readProp(container, 'roles', null);
     }
 
 }
@@ -417,7 +448,7 @@ class Player extends Model {
 
     set startingPos(value) {
         if (!this.match.running && value !== null && value !== this._startingPos) {
-            var player = this.match._startingSix[value];
+            let player = this.match._startingSix[value];
             if (this.place=='bench') {
                 if (player === null) {
                     // From bench to empty place
@@ -568,7 +599,7 @@ class Match extends Model {
 
     get watchString() {
         if (this._watchStart === null || this._clock === null) return '--:--';
-        var s = (this._clock.getTime() - this._watchStart.getTime()) / 1000;
+        let s = (this._clock.getTime() - this._watchStart.getTime()) / 1000;
         const minutes = String(Math.floor(s / 60)).padStart(2, '0');
         const seconds = String(Math.floor(s % 60)).padStart(2, '0');
         return `${minutes}:${seconds}`;
@@ -591,7 +622,7 @@ class Match extends Model {
             this._rotation += 1;
             this.changed('rotation');
         } else {
-            var player0 = this._startingSix[0];
+            let player0 = this._startingSix[0];
             for (let i=0; i<5; i++) {
                 this._startingSix[i] = this._startingSix[i+1];
                 this._startingSix[i]._startingPos = i;
@@ -610,7 +641,7 @@ class Match extends Model {
             this._rotation -= 1;
             this.changed('rotation');
         } else {
-            var player5 = this._startingSix[5];
+            let player5 = this._startingSix[5];
             for (let i=5; i>0; --i) {
                 this._startingSix[i] = this._startingSix[i-1];
                 this._startingSix[i]._startingPos = i;

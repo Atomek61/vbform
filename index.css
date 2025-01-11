@@ -22,6 +22,7 @@
 body {
     font: 12pt Arial;
     margin: 0;
+    background-color: white;
 }
 
 h1 {
@@ -66,7 +67,6 @@ dialog::backdrop {
 
 .title {
     display: flex;
-    margin-top: 1rem;
     align-items: center;
 }
 
@@ -76,17 +76,20 @@ dialog::backdrop {
 
 .button-bar {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
     gap: 1rem;
     padding: 1rem 2rem;
 }
 
-dialog table td:first-child {
-    padding-right: 1rem;
+.bar-center {
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-dialog button {
+.bar-left {
+    flex-flow: row nowrap;
+}
+
+button {
     height: 2em;
     width: 9em;
     border: 1px solid silver;
@@ -99,9 +102,12 @@ dialog button {
     padding-left: 1em;
 }
 
-dialog button:hover {
+button:hover {
     background-color: var(--btnhover-color);
+}
 
+dialog table td:first-child {
+    padding-right: 1rem;
 }
 
 .btn {
@@ -132,6 +138,14 @@ dialog button:hover {
 section > .title ~ * {
     margin-left: 1rem;
 } 
+
+.open {
+    background-image: url(img/open.svg);
+}
+
+.save {
+    background-image: url(img/save.svg);
+}
 
 .edit-line {
     display: flex;
@@ -191,6 +205,15 @@ section > .title ~ * {
     background-image: url(img/rotate-backward.svg);
 }
 
+#club-page {
+    margin: 0.5rem;
+}
+
+#club-menu {
+    display: flex;
+    flex-flow: row no-wrap;
+}
+
 .object-table {
     line-height: 2;
     border-collapse: collapse;
@@ -215,7 +238,6 @@ section > .title ~ * {
     width: 2em;
 }
 
-
 #match-grid {
     background-image: url(img/court-zone.svg),url(img/court.svg);
     background-color: var(--vb-ground-color);
@@ -235,7 +257,11 @@ section > .title ~ * {
 }
 
 .match-tpanel {
+    padding-left: 0.5em;
     grid-area: tpanel;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .match-lpanel {
@@ -279,7 +305,7 @@ section > .title ~ * {
 #match-log {
     position: absolute;
     width: 100%;
-    xvisibility: hidden;
+    visibility: hidden;
     bottom: 0;
     padding: 0.2em 1em 0.2em 1em;
     color: hsl(var(--clr),50%,30%);
@@ -294,7 +320,7 @@ section > .title ~ * {
     align-items: center;
     gap: 0.2em;
     background-color: black;
-    border-radius: 1em;
+    border-radius: 50vh;
     color: hsl(49, 100%, 50%);
     cursor: move;
     font-size: 12pt;
@@ -321,7 +347,6 @@ section > .title ~ * {
     transform: translate(-50%, -50%);
     transition: left 0.5s ease, top 0.5s ease;
     aspect-ratio: 1/1;
-    border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -351,15 +376,25 @@ section > .title ~ * {
 }
 
 .match-rpanel .btn{
+    margin-left: 0.5rem;
     height: 4em;
     width: 4em;
 }
 
 .match-tpanel .btn {
-    margin-top: 8px;
-    margin-left: 8px;
     height: 2em;
     width: 2em;
+}
+
+#match-title {
+    height: 2rem;
+    padding: 0 0.5em 0 0.5em;
+    display: flex;
+    align-items: center;
+    font-size: 20pt;
+    border-radius: 4px;
+    background-color: hsla(0,50%,100%,0.3);
+    color: hsl(var(--clr),50%,30%);
 }
 
 .inset-box {

@@ -80,7 +80,7 @@ class Page {
     }
 
     enableButton(selector, value) {
-        var btn = query(selector);
+        let btn = query(selector);
         btn.disabled = !value;
         btn.classList.toggle('btn-disable', !value);
     }
@@ -217,7 +217,7 @@ class ClubPage extends Page {
     }
 
     renameTeam(teamId) {
-        var team = this.club.teams.byId(teamId);
+        let team = this.club.teams.byId(teamId);
         Page.singleValueDialog('Mannschaft', 'Name',
             ()=> team.name,
             (value)=>{
@@ -243,8 +243,13 @@ class ClubPage extends Page {
         }
     }
 
-    editMember(teamId) {
-        const member        = this.club.members.byId(teamId);
+    createMember() {
+        let member = this.club.createMember();
+        this.editMember(member.id);
+    }
+
+    editMember(memberId) {
+        const member        = this.club.members.byId(memberId);
         const dialog        = query('#dlg-edit-member');
         const nameInput     = query('#dlg-edit-member [name="name-input"]');
         const numberInput   = query('#dlg-edit-member [name="number-input"]');
@@ -290,6 +295,43 @@ class ClubPage extends Page {
         this.club.removeMember(this.club.members.byId(memberId));
     }
 
+    save(filename) {
+        const blob = new Blob([this.club.asJSON], { type: "application/json" });
+        const url = URL.createObjectURL(blob);       
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename || "data.json";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    open() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'application/json';
+        
+        input.onchange = (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+        
+            reader.onload = (e) => {
+                try {
+                    const json = JSON.parse(e.target.result);
+                    this.club.loadFrom(json);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+        
+            reader.onerror = (error) => console.log(error);
+            reader.readAsText(file);
+        };
+        
+        input.click();
+    }
+
  }
 
 class MatchPage extends Page {
@@ -300,9 +342,10 @@ class MatchPage extends Page {
     }
 
     show(teamId) {
-        var team = this.club.teams.byId(teamId);
-        var match = this.club.createMatch(team);
+        let team = this.club.teams.byId(teamId);
+        let match = this.club.createMatch(team);
         match.clockEnable = true;
+        query('#match-title').innerHTML = team.name 
         this.courtContainer.innerHTML = '';
         Page.updateContainer(this.playersContainer, 'div', match.players,  MatchPage.updateBenchMember, 'player');
         this.benchPlayers = document.querySelectorAll('#match-bench > div');
@@ -364,8 +407,8 @@ class MatchPage extends Page {
             this.log(e.model.running ? 'Spiel gestartet' : 'Spiel beendet');
             break;
         case 'startingsix':
-            var count = this.club.match.countStartingSix();
-            var complete = count == 6;
+            let count = this.club.match.countStartingSix();
+            let complete = count == 6;
             this.showButtons(complete);
             //this.showRotationButtons(complete);
             this.log(complete ? `Mannschaft komplett` : `Mannschaft unvollständig - es fehlen ${6 - count}`);
@@ -410,7 +453,7 @@ class MatchPage extends Page {
             'ID',       player.id.toString(),
             'NAME',     player.member.name,
             'NUMBER',   player.member.numberString,
-            'ROLES',    player.member.roles,
+            'ROLES',    player.member.roles === null ? '' : player.member.roles,
         ]);
     }
 
@@ -490,7 +533,7 @@ class MatchPage extends Page {
     }
 
     log(line) {
-        var logElement = query('#match-log');
+        let logElement = query('#match-log');
         logElement.innerHTML = line;
         logElement.style.visibility = 'visible';
         setTimeout(()=> {
