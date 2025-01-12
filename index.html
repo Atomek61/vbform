@@ -42,7 +42,6 @@
   </script>
 </head>
 <body>
-    
 <dialog id="dlg-single-value">
   <h1>Eingabe</h1>
   <table>
@@ -76,28 +75,32 @@
       </td>
     </tr>
     <tr>
+      <td><label for="roles-input">Rollen</label></td>
+        <td><input type="text" name="roles-input" pattern="[AMZLD]*" tabindex="4"></td>
+    </tr>
+    <tr>
+      <td><label for="position-input">Position</label></td>
+      <td><input type="number" name="position-input" min="1" max="6" tabindex="5"></td>
+    </tr>
+    <tr>
       <td><label for="year-input">Jahrgang</label></td>
       <td>
-        <input type="number" name="year-input"  min="1900" max="2100" tabindex="4">
+        <input type="number" name="year-input" min="1900" max="2100" tabindex="6">
       </td>
     </tr>
     <tr>
       <td><label for="gender-select">Geschlecht</label></td>
       <td>
-        <select name="gender-select" tabindex="5">
+        <select name="gender-select" tabindex="7">
           <option value="m">männlich</option>
           <option value="w">weiblich</option>
         </select>
       </td>
     </tr>
-    <tr>
-      <td><label for="roles-input">Rollen</label></td>
-        <td><input type="text" name="roles-input" pattern="[AMZLD]*" tabindex="6"></td>
-    </tr>
   </table>
   <div class="button-bar bar-center">
-    <button name="button-cancel" class="cancel" tabindex="8">Abbrechen</button>
-    <button name="button-ok" type="submit" class="ok" tabindex="7" accesskey="o">OK</button>
+    <button name="button-cancel" class="cancel" tabindex="9">Abbrechen</button>
+    <button name="button-ok" type="submit" class="ok" tabindex="8" accesskey="o">OK</button>
   </div>
 </dialog>
 
@@ -105,65 +108,67 @@
   <div id="club-menu" class="button-bar bar-left">
     <button id="button-open" class="open" onclick="clubPage.open()">Öffnen</button>
     <button id="button-save" class="save" onclick="clubPage.save('vbclub100.json')">Speichern</button>
-
   </div>  
   <section>
     <div class="title">
-      <h1>YVerein</h1>
-    </div>	
-    <table id="club">
-      <tr>
-        <td id="btn-edit-clubname" class="btn rename" onclick="clubPage.renameClub()"></td><td id="club-name"></td>
-      </tr>
-    </table>
+      <h1>Verein</h1>
+    </div>
+    <div id="club" class="object-table">
+      <div class="club-row">
+        <div id="btn-edit-clubname" class="btn edit" onclick="clubPage.renameClub()"></div><div id="club-name"></div>
+      </div>
+    </div>
   </section>
   <section>
     <div class="title">
       <h1>Mannschaften</h1><div id="btn-create-team" class="btn add" onclick="club.createTeam()"></div>
-    </div>	
-    <table id="teams" class="object-table teams">
-    </table>
+    </div>
+    <div id="teams" class="object-table">
+    </div>
   </section>
   <section>
     <div class="title">
       <h1>Mitglieder</h1><div id="btn-create-member" class="btn add" onclick="clubPage.createMember()"></div>
-    </div>	
-    <table id="members" class="object-table members">
-    </table>
+    </div>
+    <div id="members" class="object-table">
+    </div>
   </section>
 </article>
 
 <article id="match-page">
-  <div id="match-grid">
-    <div class="match-tpanel">
-      <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div>
-      <div id="match-title"></div>
-    </div>
-    <div class="match-lpanel">
-      <div class="match-display inset-box" id="match-rotation">
-        <div>Rotation</div>
-        <div class="display-rotation">0</div>
+  <div id="match-container">
+    <div id="match-grid">
+      <div class="match-tpanel">
+        <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div>
+        <div id="match-title"></div>
       </div>
-      <div class="match-display inset-box" id="match-rotation">
-        <div></div>
-        <div id="display-watch">00:00</div>
-        <div id="display-clock">00:00:00</div>
+      <div class="match-lpanel">
+        <div class="match-display inset-box" id="match-rotation">
+          <div>Rotation</div>
+          <div class="display-rotation">0</div>
+        </div>
+        <div class="match-display inset-box" id="match-clock">
+          <div></div>
+          <div id="display-watch">00:00</div>
+          <div id="display-clock">00:00:00</div>
+        </div>
+      </div>
+      <div class="match-court player-dropzone" id="match-court">
+      </div>
+      <div class="match-bench bench-dropzone inset-box" id="bench">
+      </div>
+      <div class="match-rpanel">
+        <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
+        <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
+        <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
+        <div class="btn startingsix"  id="btn-save-startingsix" onclick="matchPage.saveStartingSix()"></div>
+      </div>
+      <div class="match-bpanel">
+        <div id="match-log"></div>
       </div>
     </div>
-    <div class="match-court player-dropzone" id="match-court">
-    </div>
-    <div class="match-bench bench-dropzone inset-box" id="match-bench">
-    </div>
-    <div class="match-rpanel">
-      <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
-      <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
-      <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
-    </div>
-    <div class="match-bpanel">
-      <div id="match-log"></div>
-    </div>
+    <div id="match-log"></div>
   </div>
 </article>
-
   </body>
 </html>

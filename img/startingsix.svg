@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866666"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="startingsix.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     showguides="true"
+     inkscape:zoom="3.0467171"
+     inkscape:cx="101.91297"
+     inkscape:cy="138.67385"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:lockguides="true">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.26458332"
+       spacingy="0.26458333"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       enabled="true"
+       visible="true" />
+    <sodipodi:guide
+       position="16.933332,56.091665"
+       orientation="1,0"
+       id="guide1"
+       inkscape:locked="true" />
+    <sodipodi:guide
+       position="-6.3499997,16.933334"
+       orientation="0,-1"
+       id="guide2"
+       inkscape:locked="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#19aeff;stroke:none;stroke-width:107.142;stroke-linecap:round;stroke-dasharray:214.286, 214.286;stroke-dashoffset:225;stroke-opacity:0.318182"
+       id="path3"
+       cx="16.933332"
+       cy="16.933332"
+       r="15.875" />
+    <path
+       style="font-weight:bold;font-size:26.4583px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#0e232e;stroke-width:80;stroke-linejoin:round;stroke-dasharray:320, 160;stroke-opacity:0.560526"
+       d="M 19.733413,14.095527 16.21942,14.4831 q -0.129191,-1.085204 -0.671793,-1.601968 -0.542602,-0.516763 -1.408181,-0.516763 -1.149799,0 -1.950783,1.033527 -0.788064,1.033527 -0.99477,4.302057 1.356505,-1.601967 3.371883,-1.601967 2.27376,0 3.888647,1.731158 1.627805,1.731159 1.627805,4.470006 0,2.906796 -1.70532,4.663792 -1.70532,1.756997 -4.379572,1.756997 -2.868038,0 -4.7154681,-2.222084 -1.8474301,-2.235003 -1.8474301,-7.312206 0,-5.206394 1.9249446,-7.505992 1.9249446,-2.2995987 4.9996886,-2.2995987 2.157488,0 3.565669,1.2143947 1.4211,1.201475 1.808673,3.501074 z m -8.229461,7.919403 q 0,1.769916 0.813902,2.738847 0.813903,0.956013 1.86035,0.956013 1.007689,0 1.679481,-0.788064 0.671793,-0.788065 0.671793,-2.583819 0,-1.84743 -0.723469,-2.70009 -0.723469,-0.865579 -1.808673,-0.865579 -1.046446,0 -1.769915,0.826822 -0.723469,0.813903 -0.723469,2.41587 z"
+       id="text1"
+       aria-label="6" />
+    <path
+       style="font-weight:bold;font-size:26.4583px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#dc0000;stroke-width:80;stroke-linejoin:round;stroke-dasharray:320, 160;stroke-opacity:0.560526"
+       d="m 22.461938,15.098556 -1.950783,-1.511534 q 0.930175,-1.046446 1.937864,-2.002459 0.400492,-0.387572 0.503844,-0.490925 -0.322977,-0.05168 -1.84743,-0.42633 -1.098122,-0.271301 -1.446938,-0.400492 l 0.762227,-2.2737602 q 1.692401,0.6847119 3.023067,1.5115337 -0.310058,-2.1058119 -0.310058,-3.4364783 h 2.299598 q 0,0.9430936 -0.348815,3.4623165 0.258381,-0.1033527 1.111041,-0.5038446 1.162719,-0.5296827 2.14457,-0.9043364 l 0.684712,2.3383553 q -1.43402,0.322978 -3.320207,0.633036 l 1.550291,1.744077 q 0.465087,0.529683 0.736388,0.865579 l -1.976621,1.304829 -1.744077,-2.880958 q -0.788065,1.395262 -1.808673,2.971391 z"
+       id="text2"
+       aria-label="*" />
+  </g>
+</svg>

@@ -1,1 +1,1 @@
-C:\sws\static-web-server --root .
+C:\sws\static-web-server -w sws.toml

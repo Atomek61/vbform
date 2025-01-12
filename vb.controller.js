@@ -1,20 +1,20 @@
 const TEAMROW = `
-<td class="btn show" onclick="matchPage.show({{ID}})"></td>
-<td class="btn rename" onclick="clubPage.renameTeam({{ID}})"></td>
-<td>{{ROW}}.</td>
-<td name="team-name">{{NAME}}</td>
-<td name="team-count">{{COUNT}}</td>
-<td class="btn delete" onclick="clubPage.removeTeam({{ID}})"></td>
+<div class="btn show" onclick="matchPage.show({{ID}})"></div>
+<div class="btn edit" onclick="clubPage.renameTeam({{ID}})"></div>
+<div>{{ROW}}.</div>
+<div name="team-name">{{NAME}}</div>
+<div name="team-count">{{COUNT}}</div>
+<div class="btn delete" onclick="clubPage.removeTeam({{ID}})"></div>
 `;
 
 const MEMBERROW = `
-<td class="btn rename" onclick="clubPage.editMember({{ID}})"></td>
-<td>{{ROW}}.</td>
-<td>{{NAME}}</td>
-<td>{{NUMBER}}</td>
-<td class="btn change" onclick="clubPage.toggleTeam({{ID}})"></td>
-<td>{{TEAM}}</td>
-<td class="btn delete" onclick="clubPage.removeMember({{ID}})"></td>
+<div class="btn edit" onclick="clubPage.editMember({{ID}})"></div>
+<div>{{ROW}}.</div>
+<div>{{NAME}}</div>
+<div>{{NUMBER}}</div>
+<div class="btn change" onclick="clubPage.toggleTeam({{ID}})"></div>
+<div>{{TEAM}}</div>
+<div class="btn delete" onclick="clubPage.removeMember({{ID}})"></div>
 `;
 
 const MATCHROW = `
@@ -110,23 +110,44 @@ class Page {
         dialog.showModal();
     }
 
-    static updateContainer(container, elementTag, models, updateRow, elementClass=null) {
+    // static updateContainer(container, elementTag, models, updateRow, elementClass=null) {
+    //     container.innerHTML = '';
+    //     for (let model of models) {
+    //         const element = document.createElement(elementTag);
+    //         element.model = model;
+    //         element.id = `${container.id}-${model.id}`;
+    //         if (elementClass !== null)
+    //             element.classList.add(elementClass);
+    //         container.appendChild(element);
+    //         updateRow(element, model);
+    //     }
+    // }
+
+    static buildTable(container, models, updateRow, rowClass=null) {
         container.innerHTML = '';
+        let row = 1;
         for (let model of models) {
-            const element = document.createElement(elementTag);
+            const element = document.createElement('div');
             element.model = model;
+            element.rowNumber = row;
             element.id = `${container.id}-${model.id}`;
-            if (elementClass !== null)
-                element.classList.add(elementClass);
+            if (rowClass !== null) {
+                if (Array.isArray(rowClass)) {
+                    rowClass.forEach(cls => element.classList.add(cls));
+                } else {
+                    element.classList.add(rowClass);
+                }
+            }
             container.appendChild(element);
             updateRow(element, model);
+            row++;
         }
     }
 
     static updateTeamRow(element, model) {
         element.innerHTML = repl(TEAMROW, [
             'ID',       model.id.toString(),
-            'ROW',      (element.rowIndex+1).toString(),
+            'ROW',      element.rowNumber.toString(),
             'COUNT',    model.members.length.toString(),
             'NAME',     model.name
         ]);
@@ -135,7 +156,7 @@ class Page {
     static updateMemberRow(element, model) {
         element.innerHTML = repl(MEMBERROW, [
             'ID',       model.id.toString(),
-            'ROW',      (element.rowIndex+1).toString(),
+            'ROW',      element.rowNumber.toString(),
             'NAME',     model.name,
             'NUMBER',   model.numberString,
             'TEAM',     model.team === null ? '' : model.team.name	
@@ -180,12 +201,12 @@ class ClubPage extends Page {
         case 'teams-added':
             event.subject.register((e)=>this.onTeamChange(e));            
         case 'teams-removed':
-            Page.updateContainer(this.teamsTable, 'tr', this.club.teams, Page.updateTeamRow);
+            Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, 'team-row');
             break;
         case 'members-added':
             event.subject.register((e)=>this.onMemberChange(e));
         case 'members-removed':
-            Page.updateContainer(this.membersTable, 'tr', this.club.members, Page.updateMemberRow);
+            Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, 'member-row');
             break;
         }
     }
@@ -205,8 +226,8 @@ class ClubPage extends Page {
 
     show() {
         query('#club-name').innerHTML = this.club.name;
-        Page.updateContainer(this.teamsTable, 'tr', this.club.teams, Page.updateTeamRow);
-        Page.updateContainer(this.membersTable, 'tr', this.club.members, Page.updateMemberRow);
+        Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, 'team-row');
+        Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, 'member-row');
         super.show();
     }
     
@@ -254,6 +275,7 @@ class ClubPage extends Page {
         const nameInput     = query('#dlg-edit-member [name="name-input"]');
         const numberInput   = query('#dlg-edit-member [name="number-input"]');
         const teamSelect    = query('#dlg-edit-member [name="team-select"]');
+        const positionInput = query('#dlg-edit-member [name="position-input"]');
         const yearInput     = query('#dlg-edit-member [name="year-input"]');
         const genderSelect  = query('#dlg-edit-member [name="gender-select"]');
         const rolesInput    = query('#dlg-edit-member [name="roles-input"]');
@@ -263,6 +285,7 @@ class ClubPage extends Page {
             member.name     = nameInput.value;
             member.number   = numberInput.value.trim() == '' ? null : parseInt(numberInput.value);
             member.team     = teamSelect.value == '' ? null : this.club.teams.byId(teamSelect.value); 
+            member.position = positionInput.value == '' ? null : parseInt(positionInput.value)-1;
             member.year     = yearInput.value;
             member.gender   = genderSelect.value;
             member.roles    = rolesInput.value;
@@ -283,6 +306,7 @@ class ClubPage extends Page {
              html += repl(TEAMOPTION, ['ID', team.id, 'NAME', team.name]);
         teamSelect.innerHTML = html;
         teamSelect.value = member.team === null ? '' : member.team.id.toString();
+        positionInput.value = member.position === null ? '' : member.position + 1;
         yearInput.value = member.year;
         genderSelect.value = member.gender;
         rolesInput.value = member.roles;
@@ -347,8 +371,8 @@ class MatchPage extends Page {
         match.clockEnable = true;
         query('#match-title').innerHTML = team.name 
         this.courtContainer.innerHTML = '';
-        Page.updateContainer(this.playersContainer, 'div', match.players,  MatchPage.updateBenchMember, 'player');
-        this.benchPlayers = document.querySelectorAll('#match-bench > div');
+        Page.buildTable(this.playersContainer, match.players,  MatchPage.updateBenchMember, ['player', 'on-bench']);
+        this.benchPlayers = document.querySelectorAll('#bench > div');
         this.benchPlayers.forEach((element)=>{
             element.setAttribute('draggable', 'true');
             element.addEventListener('dragstart', (e) => {
@@ -361,15 +385,18 @@ class MatchPage extends Page {
         this.showDropZone(true);
         match.register((e)=>this.onMatchChange(e));
 
-        for (let player of match.players)
+        for (let player of match.players) {
             player.register(e=>this.onPlayerChange(e));        
+            if (player.member.position !== null)
+                player.startingPos = player.member.position;     
+        }
 
         super.show();
     }
     
     bindView() {
 
-        this.playersContainer = query('#match-bench');
+        this.playersContainer = query('#bench');
         this.courtContainer = query('#match-court');     
 
         this.courtContainer.addEventListener('dragover', (e) => {
@@ -460,26 +487,25 @@ class MatchPage extends Page {
     onPlayerChange(event) {
         switch(event.change) {
         case 'place':
-            let element = query(`#match-bench-${event.model.id}`);
+            let element = query(`#bench-${event.model.id}`);
             let container = null;
             switch(event.model.place) {
-            case 'bench':
-                container = query('#match-bench');
+                case 'bench':
+                container = query('#bench');
                 container.appendChild(element);
-                element.classList.remove('active-player');
+                element.classList.replace('on-court', 'on-bench');
                 break;
             case 'court':
                 container = query('#match-court');
                 container.appendChild(element);
-                element.classList.add('active-player');
+                element.classList.replace('on-bench', 'on-court');
                 break;
             }
-            
             break;
         case 'startingpos':
             if (this.club.match.running) {
             } else {
-                let element = query(`#match-bench-${event.model.id}`);
+                let element = query(`#bench-${event.model.id}`);
                 let startingPos = event.model.startingPos;
                 if (startingPos !== null) {
                     element.style.left = POSTABLE[startingPos].col;
@@ -496,7 +522,6 @@ class MatchPage extends Page {
                 btn.classList.remove('btn-disable');
             else
                 btn.classList.add('btn-disable');
-            //btn.style.visibility = visible ? 'visible' : 'hidden';
         });
     }
 
@@ -513,7 +538,7 @@ class MatchPage extends Page {
     updateRotation() {
         for (let player of this.club.match.players) {
             if (player.place == 'court') {
-                let element = query(`#match-bench-${player.id}`);
+                let element = query(`#bench-${player.id}`);
                 element.style.left = POSTABLE[player.position].col;
                 element.style.top = POSTABLE[player.position].row;
             }
@@ -521,15 +546,15 @@ class MatchPage extends Page {
         query('#match-rotation > div:nth-child(2)').innerHTML = this.club.match.rotation;
     }
 
-    // showRotationButtons(visible) {
-    //     query('#btn-rotate-forward').style.visibility = visible ? 'visible' : 'hidden';
-    //     query('#btn-rotate-backward').style.visibility = visible ? 'visible' : 'hidden';        
-    // }
-
     updateClockPanel() {
         query('#display-clock').innerHTML = this.club.match.clockString;
         if (this.club.match.running)
             query('#display-watch').innerHTML = this.club.match.watchString;
+    }
+
+    saveStartingSix() {
+        this.club.match.saveStartingSix();
+        this.log('Startformation gespeichert');
     }
 
     log(line) {
@@ -537,7 +562,7 @@ class MatchPage extends Page {
         logElement.innerHTML = line;
         logElement.style.visibility = 'visible';
         setTimeout(()=> {
-            logElement.style.visibility = 'hidden';
+            //logElement.style.visibility = 'hidden';
          }, 2000);
     }
 

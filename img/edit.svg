@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
-   sodipodi:docname="edit.svg"
+   sodipodi:docname="rename.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,9 +25,9 @@
      inkscape:document-units="mm"
      showgrid="true"
      showguides="true"
-     inkscape:zoom="4.3087087"
-     inkscape:cx="127.41636"
-     inkscape:cy="103.62734"
+     inkscape:zoom="6.0934343"
+     inkscape:cx="75.655202"
+     inkscape:cy="60.639039"
      inkscape:window-width="1920"
      inkscape:window-height="1057"
      inkscape:window-x="1912"
@@ -54,7 +54,7 @@
        id="guide1"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="-6.3499997,16.933334"
+       position="-10.421052,16.845614"
        orientation="0,-1"
        id="guide2"
        inkscape:locked="false" />
@@ -72,17 +72,11 @@
        height="29.633333"
        x="2.1166666"
        y="2.1166666"
-       ry="3.9310527" />
-    <g
-       id="g1">
-      <path
-         id="rect3-1"
-         style="fill:#ffffff;stroke:none;stroke-width:0.264583"
-         d="m 6.8269727,19.05 v 4.233333 H 11.060306 V 19.05 Z m 7.9896933,0 v 4.233333 h 4.233333 V 19.05 Z m 7.885307,0 v 4.233333 h 4.233333 V 19.05 Z" />
-      <path
-         id="rect3-1-8"
-         style="fill:#ffffff;stroke:none;stroke-width:0.264583"
-         d="m 6.8269733,10.583333 v 4.233333 h 4.2333327 v -4.233333 z m 7.9896927,0 v 4.233333 h 4.233333 v -4.233333 z m 7.885307,0 v 4.233333 h 4.233333 v -4.233333 z" />
-    </g>
+       ry="3.9310529" />
+    <path
+       id="path3"
+       style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+       d="m 23.283333,7.4083333 -13.010058,13.0100587 3.175,3.175 13.010058,-13.010059 z M 9.525,21.166667 7.4083331,26.458332 12.7,24.341667 Z"
+       sodipodi:nodetypes="ccccccccc" />
   </g>
 </svg>

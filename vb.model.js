@@ -246,7 +246,6 @@ class Club extends Model {
         let retention = new Date();
         retention.setTime(retention.getTime() + (365*24*60*60*1000));
         return `vbclub100=${asJSON};expires=${retention.toUTCString()};path=/`;
-//        return `vbclub100=${json};expires=${retention.toUTCString()};SameSite=true;secure=false;`;
     }
 
 
@@ -263,49 +262,6 @@ class Club extends Model {
             this.loadFrom(JSON.parse(value));
     }
 
-    loadW0809() {
-
-        this.clear();
-
-        this.name = 'Wiker SV';
-        let team1 = this.createTeam('Wiker SV 1');
-        let team2 = this.createTeam('Wiker SV 2');
-
-        // List of example players
-        // this.createMember('').loadFrom({name: 'Emmy', number: 3, team: 'Wik 2', year: 2008, gender: 'w', roles: 'M'});        
-        // this.createMember('').loadFrom({name: 'Karli', number: 10, team: 'Wik 1', year: 2008, gender: 'w', roles: 'M'});        
-        // this.createMember('').loadFrom({name: 'Juliana', number: 23, team: 'Wik 1', year: 2010, gender: 'w', roles: 'AM'});        
-        // this.createMember('').loadFrom({name: 'Zoe', number: 27, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AM'});        
-        // this.createMember('').loadFrom({name: 'Marlie', number: 8, team: 'Wik 2', year: 2009, gender: 'w', roles: 'AZ'});        
-        // this.createMember('').loadFrom({name: 'Lea', number: 1, team: 'Wik 2', year: 2010, gender: 'w', roles: 'AZL'});        
-        // this.createMember('').loadFrom({name: 'Maike', number: 14, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
-        // this.createMember('').loadFrom({name: 'Ivyna', number: 18, team: 'Wik 1', year: 2009, gender: 'w', roles: 'MA'});        
-        // this.createMember('').loadFrom({name: 'Juliana', number: 26, team: 'Wik 2', year: 2008, gender: 'w', roles: 'AM'});        
-        // this.createMember('').loadFrom({name: 'Hedwig', number: 24, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
-        // this.createMember('').loadFrom({name: 'Theresa', number: 16, team: 'Wik 2', year: 2009, gender: 'w', roles: 'ZA'});        
-        // this.createMember('').loadFrom({name: 'Hedwig', number: 11, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        // this.createMember('').loadFrom({name: 'Milla', number: 13, team: 'Wik 1', year: 2008, gender: 'w', roles: 'AMZ'});        
-        // this.createMember('').loadFrom({name: 'Alice', number: 6, team: 'Wik 2', year: 2010, gender: 'w', roles: 'M'});        
-        // this.createMember('').loadFrom({name: 'Lissy', number: 25, team: 'Wik 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        // this.createMember('').loadFrom({name: 'Leila', number: 2, team: 'Wik 2', year: 2008, gender: 'w', roles: 'A'});
-        this.createMember('').loadFrom({name: 'Lara', number: 3, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Juna', number: 10, team: 'Wiker SV 1', year: 2008, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Jette', number: 23, team: 'Wiker SV 1', year: 2010, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Alisa', number: 27, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Mia', number: 8, team: 'Wiker SV 2', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Amelia', number: 1, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'AZL'});        
-        this.createMember('').loadFrom({name: 'Frida', number: 14, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Anna', number: 18, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'MA'});        
-        this.createMember('').loadFrom({name: 'Stine', number: 26, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'AM'});        
-        this.createMember('').loadFrom({name: 'Anni', number: 24, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Leni', number: 16, team: 'Wiker SV 2', year: 2009, gender: 'w', roles: 'ZA'});        
-        this.createMember('').loadFrom({name: 'Thurid', number: 11, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Kathi', number: 13, team: 'Wiker SV 1', year: 2008, gender: 'w', roles: 'AMZ'});        
-        this.createMember('').loadFrom({name: 'Pauline', number: 6, team: 'Wiker SV 2', year: 2010, gender: 'w', roles: 'M'});        
-        this.createMember('').loadFrom({name: 'Leticia', number: 25, team: 'Wiker SV 1', year: 2009, gender: 'w', roles: 'AZ'});        
-        this.createMember('').loadFrom({name: 'Emilia', number: 17, team: 'Wiker SV 2', year: 2008, gender: 'w', roles: 'ZM'});
-    }
-
 }
 
 class Member extends Model {
@@ -315,6 +271,7 @@ class Member extends Model {
         this._club = club;
         this._number = null;
         this._team = null;
+        this._position = null;
         this._year = null;
         this._gender = null;
         this._roles = null; // AMZLD
@@ -355,6 +312,17 @@ class Member extends Model {
         }     
     }
     
+    get position() {
+        return this._position;    
+    }
+
+    set position(value) {
+        if (value !== this._position && value>=0 && value <=5) {
+            this._position = value;
+            this.changed('position');
+        }
+    }
+
     get year() {
         return this._year;
     }
@@ -392,6 +360,7 @@ class Member extends Model {
         super.storeTo(container);
         container.number    = this._number;
         container.team      = this.team === null ? null : this.team.name;
+        container.position  = this.position;
         container.year      = this.year;
         container.gender    = this.gender;
         container.roles     = this.roles; 
@@ -402,6 +371,7 @@ class Member extends Model {
         this.number     = this.readProp(container, 'number', null);
         let teamName    = this.readProp(container, 'team', null);
         this.team       = teamName === null ? null : this.club.teams.find((team)=>team.name == teamName);
+        this.position   = this.readProp(container, 'position', null);
         this.year       = this.readProp(container, 'year', null);
         this.gender     = this.readProp(container, 'gender', null);
         this.roles      = this.readProp(container, 'roles', null);
@@ -414,6 +384,7 @@ class Team extends Model {
     constructor(name) {
         super(name);
         this.members = new ModelArray(this, 'members');
+        this._startingSix = new Array(6).fill(null);
     }
 
     addMember(member) {
@@ -615,6 +586,22 @@ class Match extends Model {
             if (player !== null)
                 count++;
         return count;
+    }
+
+    saveStartingSix() {
+        for (let player of this.players) {
+            let pos = this._startingSix.indexOf(player);
+            if (pos >= 0)
+                player.member.position = pos;
+            else
+                player.member.position = null;
+        }
+        // }
+        //     if (player in this._startingSix)
+
+        // for (let i=0; i<this._startingSix.length; i++)
+        //     if (this._startingSix[i] !== null)
+        //         this._startingSix[i].member.position = i;
     }
 
     rotateForward() {
