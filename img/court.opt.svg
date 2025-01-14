@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1800cm" height="1125cm" version="1.1" viewBox="0 0 18000 11250" xmlns="http://www.w3.org/2000/svg">
+ <g style="fill:#f9b384">
+  <path d="m2812.5 0v10125h9e3v-10125h-9e3z"/>
+  <path d="m2812.5 0v10123c0 1.173 0.944 2.117 2.1166 2.117h8995.8c1.172 0 2.116-0.944 2.116-2.117v-10123h-100v1075h-8800v-1075h-100zm100 1175h8800v2850h-8800v-2850zm9e3 2850v100h400v-100h-400zm-9e3 100h8800v5900h-8800v-5900zm-100 6100v400h100v-400h-100zm8900 0v400h100v-400h-100z"/>
+  <g>
+   <circle cx="1812.5" cy="1125" r="200" style="fill:#0e232e;stroke-linejoin:round;stroke-width:1.0001"/>
+   <circle cx="12812" cy="1125" r="200" style="fill:#0e232e;stroke-linejoin:round;stroke-width:1.0001"/>
+   <path d="m1812.5 1125h11000" style="fill:#0e232e;stroke-dasharray:160, 80;stroke-linejoin:round;stroke-width:40;stroke:#0e232e"/>
+  </g>
+ </g>
+ <g style="fill-opacity:.25874;fill:#000000;font-family:'Courier New';font-size:1e3px;font-weight:bold;stroke-dasharray:150, 150;stroke-linecap:round;stroke-opacity:.24126;stroke-width:50">
+  <text x="6949.6714" y="6763.4512" ><tspan x="6949.6714" y="6763.4512" style="font-size:1e3px;stroke-width:50">6</tspan></text>
+  <text x="4037.1094" y="6756.8364"><tspan x="4037.1094" y="6756.8364" style="font-size:1e3px;stroke-width:50">5</tspan></text>
+  <text x="3983.7695" y="2270.9641"><tspan x="3983.7695" y="2270.9641" style="font-size:1e3px;stroke-width:50">4</tspan></text>
+  <text x="6974.5742" y="2270.0662"><tspan x="6974.5742" y="2270.0662" style="font-size:1e3px;stroke-width:50">3</tspan></text>
+  <text x="9999.3555" y="2262.6313"><tspan x="9999.3555" y="2262.6313" style="font-size:1e3px;stroke-width:50">2</tspan></text>
+  <text x="10038.887" y="6758.2559"><tspan x="10038.887" y="6758.2559" style="font-size:1e3px;stroke-width:50">1</tspan></text>
+ </g>
+ <g style="display:none">
+  <g style="display:inline;fill:none;stroke-dasharray:300.233, 150.117;stroke-linejoin:round;stroke-opacity:.56053;stroke-width:75.058;stroke:#cc5e74">
+   <rect x="5912.2" y="5712.5" width="2812.8" height="4224.9" ry="387.06"/>
+   <rect x="3000.1" y="5711.9" width="2724.8" height="4213.7" ry="386.03"/>
+   <rect x="3000.3" y="1262.2" width="2724.3" height="4275.7" ry="391.71"/>
+   <rect x="5900.3" y="1262.8" width="2824.3" height="4274.7" ry="391.62"/>
+   <rect x="8901" y="1274.7" width="2724.3" height="4275.7" ry="391.71"/>
+   <rect x="8900.8" y="5724.4" width="2724.8" height="4213.7" ry="386.03"/>
+  </g>
+ </g>
+</svg>

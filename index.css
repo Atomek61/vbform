@@ -10,34 +10,29 @@
     --table-color1: hsl(var(--clr),60%,95%); 
     --table-color2: hsl(var(--clr),60%,98%); 
     --vb-ground-color: hsl(202, 82%, 43%);
-    --row-1: 25%;
-    --row-2: 75%;
-    --col-1: 17%;
-    --col-2: 50%;
-    --col-3: 83%;
 }
 
 body {
     font: 12pt Arial;
     margin: 0;
-    background-color: white;
 }
 
 h1 {
     margin: 0.5em 0 0.5em 0;
 }
 
-article {
+section {
+    background-color: white;
     display: none;
     width: 100%;
     height: 100%;
 }
 
 dialog {
-  border: 1px solid gray;
-  border-radius: 8px;
-  box-shadow: 4px 4px 4px silver;
-  padding: 0;
+    border: 1px solid gray;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px silver;
+    padding: 0;
 }
 
 dialog h1 {
@@ -63,6 +58,10 @@ dialog .bar {
 dialog::backdrop {
     background: hsla(var(--clr), 50%, 80%, 0.5);
     backdrop-filter: blur(1.5px);
+}
+
+dialog:modal {
+    box-shadow: 4px 4px 4px gray;
 }
 
 .title {
@@ -127,15 +126,15 @@ dialog table td:first-child {
 
 .btn:active {
     transform: scale(0.9);
-    filter: brightness(1.7); /* Helligkeit erhöhen */
+    filter: brightness(1.7);
 }
 
-.btn-bar{
+.btn-bar {
     display: flex;
     margin-top: 1rem;
 }
 
-section > .title ~ * {
+p > .title ~ * {
     margin-left: 1rem;
 } 
 
@@ -145,7 +144,7 @@ section > .title ~ * {
 }
 
 #club-page {
-    margin: 0.5rem;
+    padding: 0.5rem;
 }
 
 #club-menu {
@@ -229,29 +228,39 @@ section > .title ~ * {
     width: 2em;
 }
 
-@media (min-aspect-ratio: 16/10) {
-    #match-page {
-        height: 100vh;
-    }
-}
-
 #match-page {
+    height: 100vh;
     background-color: hsl(var(--clr), 50%, 4%);
 }
 
-
-/* @media (max-aspect-ratio: 16/10) {
-    #match-page {
-        width: 100vh;
-    }
-}
- */
 #match-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    height: 100%;
+}
+
+@media (min-aspect-ratio: 16/10) {
+    #match-container {
+        flex-flow: row nowrap;
+        height: 100vh;
+    }
+    
+    #match-grid {
+        height: 100%;
+        font-size: 2.5vh;
+    }
+}
+
+@media (max-aspect-ratio: 16/10) {
+    #match-container {
+        height: 100vh;
+        flex-flow: column nowrap;
+    }
+    
+    #match-grid {
+        width: 100%;
+        font-size: 1.56vw;
+    }
 }
 
 #match-grid {
@@ -259,7 +268,6 @@ section > .title ~ * {
     background-color: var(--vb-ground-color);
     background-size: 100%;
     background-repeat: no-repeat;
-    height: 100%;
     aspect-ratio: 16/10;
     display: grid;
     grid-template-columns: 5fr 16fr 8fr 3fr;
@@ -267,9 +275,8 @@ section > .title ~ * {
     grid-template-areas:
         "tpanel tpanel tpanel rpanel"
         "lpanel court  bench  rpanel"
-        "bpanel bpanel bpanel bpanel";
+        "bpanel bpanel bpanel rpanel";
     gap: 0;
-    font-size: 2.5vh;
 }
 
 .match-tpanel {
@@ -310,6 +317,10 @@ section > .title ~ * {
 
 .match-rpanel {
     grid-area: rpanel;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    position: relative;
 }
 
 .match-bpanel {
@@ -321,7 +332,6 @@ section > .title ~ * {
     position: absolute;
     visibility: hidden;
     bottom: 0;
-    xmargin: 0;
     padding: 0.2em 1em 0.2em 1em;
     color: hsl(var(--clr),50%,30%);
     background-color: hsla(0,50%,100%,0.3);
@@ -363,7 +373,7 @@ section > .title ~ * {
 
 .on-bench div:nth-child(1) {
     width: 2em;
-    text-align: right;
+    text-align: center;
 }
 
 .on-bench div:nth-child(2) {
@@ -392,6 +402,10 @@ section > .title ~ * {
     margin-right: auto;
     height: 4em;
     width: 4em;
+}
+
+.match-rpanel .rotate-forward {
+    margin-top: 2em;
 }
 
 .match-tpanel .btn {
@@ -454,8 +468,21 @@ section > .title ~ * {
     pointer-events: none;
 }
 
+#btn-fullscreen {
+    margin-top: 1em;
+}
+
 #btn-rotate-forward {
     margin-top: 4em;
+}
+
+#btn-save-startingsix {
+    margin-top: 4em;
+}
+
+#btn-startstop {
+    position: absolute;
+    bottom: 1em;
 }
 
 .open {
@@ -488,7 +515,6 @@ section > .title ~ * {
 
 .home {
     background-image: url(img/home.svg);
-    margin-right: 1rem;
 }
 
 .change {
@@ -521,6 +547,17 @@ section > .title ~ * {
 
 .startingsix {
     background-image: url(img/startingsix.svg);
-    margin-top: 1rem;
+}
+
+.new {
+    background-image: url(img/new.svg);
+}
+
+.full-screen {
+    background-image: url(img/full-screen.svg);
+}
+
+.shrink-screen {
+    background-image: url(img/shrink-screen.svg);
 }
 

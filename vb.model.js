@@ -154,8 +154,10 @@ class Club extends Model {
 
     clear() {
         this.name = '';	
+
         while (this.teams.length > 0)
             this.removeTeam(this.teams.byIndex(0));
+        
         while (this.members.length > 0)
             this.removeMember(this.members.byIndex(0));
     }

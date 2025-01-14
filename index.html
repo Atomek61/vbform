@@ -103,13 +103,13 @@
     <button name="button-ok" type="submit" class="ok" tabindex="8" accesskey="o">OK</button>
   </div>
 </dialog>
-
-<article id="club-page">
+<section id="club-page">
   <div id="club-menu" class="button-bar bar-left">
     <button id="button-open" class="open" onclick="clubPage.open()">Öffnen</button>
     <button id="button-save" class="save" onclick="clubPage.save('vbclub100.json')">Speichern</button>
+    <button id="button-new" class="new" onclick="clubPage.new()">Neu</button>
   </div>  
-  <section>
+  <p>
     <div class="title">
       <h1>Verein</h1>
     </div>
@@ -118,24 +118,23 @@
         <div id="btn-edit-clubname" class="btn edit" onclick="clubPage.renameClub()"></div><div id="club-name"></div>
       </div>
     </div>
-  </section>
-  <section>
+  </p>
+  <p>
     <div class="title">
       <h1>Mannschaften</h1><div id="btn-create-team" class="btn add" onclick="club.createTeam()"></div>
     </div>
     <div id="teams" class="object-table">
     </div>
-  </section>
-  <section>
+  </p>
+  <p>
     <div class="title">
       <h1>Mitglieder</h1><div id="btn-create-member" class="btn add" onclick="clubPage.createMember()"></div>
     </div>
     <div id="members" class="object-table">
     </div>
-  </section>
-</article>
-
-<article id="match-page">
+  </p>
+</section>
+<section id="match-page">
   <div id="match-container">
     <div id="match-grid">
       <div class="match-tpanel">
@@ -158,10 +157,11 @@
       <div class="match-bench bench-dropzone inset-box" id="bench">
       </div>
       <div class="match-rpanel">
-        <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
+        <div class="btn full-screen" id="btn-fullscreen" onclick="clubPage.toggleFullscreen()"></div>
+        <div class="btn startingsix"  id="btn-save-startingsix" onclick="matchPage.saveStartingSix()"></div>
         <div class="btn rotate-forward" id="btn-rotate-forward" onclick="club.match.rotateForward()"></div>
         <div class="btn rotate-backward"  id="btn-rotate-backward" onclick="club.match.rotateBackward()"></div>
-        <div class="btn startingsix"  id="btn-save-startingsix" onclick="matchPage.saveStartingSix()"></div>
+        <div class="btn start" id="btn-startstop" onclick="club.match.running = !club.match.running"></div>
       </div>
       <div class="match-bpanel">
         <div id="match-log"></div>
@@ -169,6 +169,6 @@
     </div>
     <div id="match-log"></div>
   </div>
-</article>
+</section>
   </body>
 </html>

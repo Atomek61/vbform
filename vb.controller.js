@@ -79,10 +79,15 @@ class Page {
         this.container.style.display = 'none';
     }
 
-    enableButton(selector, value) {
-        let btn = query(selector);
-        btn.disabled = !value;
-        btn.classList.toggle('btn-disable', !value);
+    enableButtons(selectors, value) {
+        if (Array.isArray(selectors))
+            for (let selector of selectors)
+                this.enableButtons(selector, value);
+        else {
+            let btn = query(selectors);
+            btn.disabled = !value;
+            btn.classList.toggle('btn-disable', !value);
+        }
     }
 
     static singleValueDialog(title, prompt, getter, setter) {
@@ -109,19 +114,6 @@ class Page {
         input.value = getter();
         dialog.showModal();
     }
-
-    // static updateContainer(container, elementTag, models, updateRow, elementClass=null) {
-    //     container.innerHTML = '';
-    //     for (let model of models) {
-    //         const element = document.createElement(elementTag);
-    //         element.model = model;
-    //         element.id = `${container.id}-${model.id}`;
-    //         if (elementClass !== null)
-    //             element.classList.add(elementClass);
-    //         container.appendChild(element);
-    //         updateRow(element, model);
-    //     }
-    // }
 
     static buildTable(container, models, updateRow, rowClass=null) {
         container.innerHTML = '';
@@ -172,7 +164,6 @@ class Page {
             'NUMBER',   model.numberString,
         ]);
     }
-
 }
 
 class ClubPage extends Page {
@@ -190,6 +181,16 @@ class ClubPage extends Page {
 
         for (let member of this.club.members)
             member.register((e)=>this.onMemberChange(e));
+
+        document.body.addEventListener('fullscreenchange', (e) => {
+            let isFullscreen = document.fullscreenElement === null;
+            let btn = query('#btn-fullscreen');
+            if (isFullscreen)
+                btn.classList.replace('shrink-screen', 'full-screen');
+            else
+                btn.classList.replace('full-screen', 'shrink-screen');
+        })
+
 
     }
 
@@ -229,6 +230,13 @@ class ClubPage extends Page {
         Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, 'team-row');
         Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, 'member-row');
         super.show();
+    }
+
+    toggleFullscreen() {
+        if (document.fullscreenElement)
+            document.exitFullscreen();
+        else
+            document.body.requestFullscreen();
     }
     
     renameClub() {
@@ -319,6 +327,10 @@ class ClubPage extends Page {
         this.club.removeMember(this.club.members.byId(memberId));
     }
 
+    new() {
+        this.club.clear();
+    }
+
     save(filename) {
         const blob = new Blob([this.club.asJSON], { type: "application/json" });
         const url = URL.createObjectURL(blob);       
@@ -380,8 +392,8 @@ class MatchPage extends Page {
                 e.dataTransfer.effectAllowed = 'move';
             });
         });
-        this.enableButton('#btn-match-back', true);
-        this.showButtons(false);
+        this.enableButtons('#btn-match-back', true);
+        this.enableButtons(['#btn-save-startingsix', '#btn-rotate-forward', '#btn-rotate-backward', '#btn-startstop'], false);
         this.showDropZone(true);
         match.register((e)=>this.onMatchChange(e));
 
@@ -430,13 +442,13 @@ class MatchPage extends Page {
             this.showStartStop(e.model.running);
             if (this.club.match.running)
                 query('#btn-startstop').style.backgroundImage = 'url(img/stop.svg)';
-            this.enableButton('#btn-match-back', !e.model.running);
+            this.enableButtons('#btn-match-back', !e.model.running);
             this.log(e.model.running ? 'Spiel gestartet' : 'Spiel beendet');
             break;
         case 'startingsix':
             let count = this.club.match.countStartingSix();
             let complete = count == 6;
-            this.showButtons(complete);
+            this.enableButtons(['#btn-save-startingsix', '#btn-rotate-forward', '#btn-rotate-backward', '#btn-startstop'], complete);
             //this.showRotationButtons(complete);
             this.log(complete ? `Mannschaft komplett` : `Mannschaft unvollständig - es fehlen ${6 - count}`);
             break;
@@ -516,14 +528,19 @@ class MatchPage extends Page {
         }    
     }
 
-    showButtons(visible) {
-        document.querySelectorAll('#match-grid .match-rpanel .btn').forEach((btn) => {
-            if (visible)
-                btn.classList.remove('btn-disable');
-            else
-                btn.classList.add('btn-disable');
-        });
-    }
+    // showButtons(selectors, visible) {
+    //     for (let selector of selectors)
+    //         if (visible)
+    //             query(selector).classList.replace('btn')
+
+
+    //     document.querySelectorAll('#match-grid .match-rpanel .btn').forEach((btn) => {
+    //         if (visible)
+    //             btn.classList.remove('btn-disable');
+    //         else
+    //             btn.classList.add('btn-disable');
+    //     });
+    // }
 
     showDropZone(visible) {
         query('#match-grid').style.backgroundImage =
