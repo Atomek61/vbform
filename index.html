@@ -137,6 +137,47 @@
 <section id="match-page">
   <div id="match-container">
     <div id="match-grid">
+      <svg id="court-image" version="1.1" viewBox="0 0 1500 1100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <rect id="court-zone" width="250" height="400" ry="50"/>
+        </defs>
+        <g class="court-field">
+            <rect x="300" width="900" height="1e3"/>
+        </g>
+        <g class="court-lines">
+            <rect x="300" width="12" height="1000"/>
+            <rect x="1188" width="12" height="1000"/>
+            <rect x="300" y="988" width="900" height="12"/>
+            <rect x="300" y="94" width="900" height="12"/>
+            <rect x="300" y="388" width="900" height="12"/>
+            <rect x="300" y="1012" width="12" height="40"/>
+            <rect x="1188" y="1012" width="12" height="40"/>
+            <rect x="1212" y="388" width="40" height="12"/>
+        </g>
+        <g>
+            <circle class="court-masts" cx="200" cy="100" r="20"/>
+            <circle class="court-masts" cx="1300" cy="100" r="20"/>
+            <path class="court-net" d="m240 100 H1260"/>
+        </g>
+        <g class="court-positions">
+          <g transform="translate(450, 225)" text-anchor="middle" style="fill-opacity:.3;fill:#000000;font-family:'Courier New';font-size:100px;font-weight:bold;">
+            <text x="600" y="450">1</text>
+            <text x="600" y=  "0">2</text>
+            <text x="300" y=  "0">3</text>
+            <text x=  "0" y=  "0">4</text>
+            <text x=  "0" y="450">5</text>
+            <text x="300" y="450">6</text>
+          </g>
+          <g transform="translate(325, 125)" style="fill-opacity:.05;fill:#361515;">
+            <use href="#court-zone" x="600" y="450"/>
+            <use href="#court-zone" x="600" y=  "0"/>
+            <use href="#court-zone" x="300" y=  "0"/>
+            <use href="#court-zone" x=  "0" y=  "0"/>
+            <use href="#court-zone" x=  "0" y="450"/>
+            <use href="#court-zone" x="300" y="450"/>
+          </g>
+        </g>
+      </svg>
       <div class="match-tpanel">
         <div id="btn-match-back" class="btn home" onclick="matchPage.back()"></div>
         <div id="match-title"></div>

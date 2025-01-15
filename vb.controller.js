@@ -29,12 +29,12 @@ const MATCHPLAYER = `<div>{{NUMBER}}</div><div>{{NAME}}</div><div>{{ROLES}}</div
 const TEAMOPTION = '<option value="{{ID}}">{{NAME}}</option>\n';
 
 const POSTABLE = [
-    {row: '75%', col: '83%'},
-    {row: '25%', col: '83%'},
+    {row: '75%', col: '83.3%'},
+    {row: '25%', col: '83.3%'},
     {row: '25%', col: '50%'},
     {row: '25%', col: '17%'},
     {row: '75%', col: '17%'},
-    {row: '75%', col: '50%'},
+    {row: '75%', col: '50.6%'},
 ];
 
 function query() {
@@ -394,7 +394,7 @@ class MatchPage extends Page {
         });
         this.enableButtons('#btn-match-back', true);
         this.enableButtons(['#btn-save-startingsix', '#btn-rotate-forward', '#btn-rotate-backward', '#btn-startstop'], false);
-        this.showDropZone(true);
+        this.showCourtPositions(true);
         match.register((e)=>this.onMatchChange(e));
 
         for (let player of match.players) {
@@ -438,7 +438,7 @@ class MatchPage extends Page {
     onMatchChange(e) {
         switch(e.change) {
         case 'running':
-            this.showDropZone(!e.model.running);
+            this.showCourtPositions(!e.model.running);
             this.showStartStop(e.model.running);
             if (this.club.match.running)
                 query('#btn-startstop').style.backgroundImage = 'url(img/stop.svg)';
@@ -542,10 +542,10 @@ class MatchPage extends Page {
     //     });
     // }
 
-    showDropZone(visible) {
-        query('#match-grid').style.backgroundImage =
-            visible ? 'url(img/court-zone.svg),url(img/court.svg)' 
-                    : 'url(img/court.svg)';
+    showCourtPositions(visible) {
+        query('.court-positions').style.display =
+            visible ? 'block' 
+                    : 'none';
     }
 
     showStartStop(running) {

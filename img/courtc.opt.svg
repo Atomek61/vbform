@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 2000 1000" xmlns="http://www.w3.org/2000/svg">
+ <g class="court-field">
+  <rect x="300" width="900" height="1e3"/>
+ </g>
+</svg>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1500"
+   height="1100"
+   viewBox="0 0 1500 1100.0001"
+   version="1.1"
+   id="svg138"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="courtc.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview140"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     showguides="true"
+     inkscape:lockguides="false"
+     inkscape:zoom="0.45745301"
+     inkscape:cx="1068.9623"
+     inkscape:cy="648.154"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid259"
+       empspacing="20"
+       originx="0"
+       originy="0"
+       spacingy="5.0000002"
+       spacingx="5.0000002"
+       units="px"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs135" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#fcc79a;fill-opacity:1;stroke-width:302.362;stroke-linejoin:round;stroke-dasharray:1209.45, 604.724;stroke-opacity:0.560526"
+       id="rect1"
+       width="900"
+       height="999.99994"
+       x="300"
+       y="0"
+       sodipodi:insensitive="true" />
+    <path
+       id="rect2"
+       style="fill:#cccccc;fill-opacity:1;stroke-width:302.362;stroke-linejoin:round;stroke-dasharray:1209.45, 604.724;stroke-opacity:0.560526"
+       d="m 300,0 v 1000 h 900 V 0 h -10 V 95 H 310 V 0 Z m 10,105 h 880 V 390 H 310 Z m 0,295 h 880 V 990 H 310 Z"
+       sodipodi:nodetypes="ccccccccccccccccccc" />
+  </g>
+</svg>

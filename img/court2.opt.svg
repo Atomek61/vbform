@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1500px" height="1100px" version="1.1" viewBox="300 100 1500 1100" xmlns="http://www.w3.org/2000/svg">
+    <g class="court-decoration" style="fill:#0e232e;" transform="translate(187 -125)">
+        <circle cx="2e3" cy="1e3" r="200"/>
+        <circle cx="1200" cy="1e3" r="200"/>
+        <path d="m2e3 1e3h1e4" style="stroke-dasharray:160, 80;stroke-width:40;stroke:#0e232e"/>
+    </g>
+    <g class="court-floor" style="fill:#f9b384">
+        <path d="m3e3 0 8e-4 1e4h9e3v-1e4z"/>
+    </g>
+    <g class="court-lines" style="fill:#f4f1d9">
+        <path d="m3e3 0-1e-4 1e4c0 1 0.9 2 2 2h9e3c1 0 2-0.9 2-2v-1e4h-100v950h-9e3l1e-4 -950zm100 1e3h9e3v3e3h-9e3zm9e3 3e3v100h400v-100zm-9e3 100h9e3v6e3h-9e3zm-100 6e3v400h100v-400zm9e3 0v400h100v-400z"/>
+    </g>
+    <g style="fill-opacity:.3;fill:#000000;font-family:'Courier New';font-size:1e3px;font-weight:bold;stroke-dasharray:150, 150;stroke-linecap:round;stroke-opacity:.2;stroke-width:50">
+        <text x="7137.1714" y="6763.4512"><tspan x="7137.1714" y="6763.4512">6</tspan></text>
+        <text x="4224.6094" y="6756.8364"><tspan x="4224.6094" y="6756.8364">5</tspan></text>
+        <text x="4171.2695" y="2270.9641"><tspan x="4171.2695" y="2270.9641">4</tspan></text>
+        <text x="7162.0742" y="2270.0662"><tspan x="7162.0742" y="2270.0662">3</tspan></text>
+        <text x="10186.855" y="2262.6313"><tspan x="10186.855" y="2262.6313">2</tspan></text>
+        <text x="10226.387" y="6758.2559"><tspan x="10226.387" y="6758.2559">1</tspan></text>
+    </g>
+    <g class="court-zones" style="fill:none;stroke-dasharray:300.233, 150.117;stroke-linejoin:round;stroke-opacity:.6;stroke-width:75;stroke:#cc5e74" transform="translate(187 -113)">
+        <rect x="6e3" y="6e3" width="3e3" height="4e3" ry="387"/>
+        <rect x="3e3" y="6e3" width="3e3" height="4e3" ry="386"/>
+        <rect x="3e3" y="1e3" width="3e3" height="4e3" ry="392"/>
+        <rect x="6e3" y="1e3" width="3e3" height="4e3" ry="392"/>
+        <rect x="9e3" y="1e3" width="3e3" height="4e3" ry="392"/>
+        <rect x="9e3" y="6e3" width="3e3" height="4e3" ry="386"/>
+    </g>
+</svg>

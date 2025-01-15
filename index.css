@@ -264,10 +264,8 @@ p > .title ~ * {
 }
 
 #match-grid {
-    background-image: url(img/court-zone.svg),url(img/court.svg);
+    position: relative;
     background-color: var(--vb-ground-color);
-    background-size: 100%;
-    background-repeat: no-repeat;
     aspect-ratio: 16/10;
     display: grid;
     grid-template-columns: 5fr 16fr 8fr 3fr;
@@ -279,16 +277,23 @@ p > .title ~ * {
     gap: 0;
 }
 
+#court-image {
+    position: absolute;
+    height: 97.5%;
+    left: -1%;
+    top: 0;
+}
+
 .match-tpanel {
     padding-left: 0.5em;
     grid-area: tpanel;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    z-index: 2;
 }
 
 .match-lpanel {
-    margin-top: 0.5rem;
     grid-area: lpanel;
     display: flex;
     flex-flow: column wrap;
@@ -303,8 +308,8 @@ p > .title ~ * {
 }
 
 #bench {
-    margin:  1rem 0.5rem 0rem 0.5rem;
-    padding: 0.5em 0.2em 0.5em 0.5em;
+    margin: 0.5rem;
+    padding: 0.2em 0.5em 0.2em 0.5em;
     grid-area: bench;
     display: flex;
     flex-wrap: wrap;
@@ -561,3 +566,20 @@ p > .title ~ * {
     background-image: url(img/shrink-screen.svg);
 }
 
+.court-field {
+    fill: hsl(23, 90%, 70%);
+}
+
+.court-lines {
+    fill: hsl(24, 20%, 90%);
+}
+
+.court-masts {
+    fill: hsl(198, 89%, 4%);
+}
+
+.court-net {
+    stroke-dasharray: 30, 15;
+    stroke-width: 5;
+    stroke: hsl(198, 89%, 4%);
+}
