@@ -17,13 +17,6 @@ const MEMBERROW = `
 <div class="btn delete" onclick="clubPage.removeMember({{ID}})"></div>
 `;
 
-const MATCHROW = `
-<td>{{ROW}}.</td>
-<td>{{NAME}}</td>
-<td>{{NUMBER}}</td>
-<td>{{ROLES}}</td>
-`;
-
 const MATCHPLAYER = `<div>{{NUMBER}}</div><div>{{NAME}}</div><div>{{ROLES}}</div>\n`;
 
 const TEAMOPTION = '<option value="{{ID}}">{{NAME}}</option>\n';
@@ -115,7 +108,7 @@ class Page {
         dialog.showModal();
     }
 
-    static buildTable(container, models, updateRow, rowClass=null) {
+    static buildTable(container, models, updateRow, onCreate) {
         container.innerHTML = '';
         let row = 1;
         for (let model of models) {
@@ -123,15 +116,9 @@ class Page {
             element.model = model;
             element.rowNumber = row;
             element.id = `${container.id}-${model.id}`;
-            if (rowClass !== null) {
-                if (Array.isArray(rowClass)) {
-                    rowClass.forEach(cls => element.classList.add(cls));
-                } else {
-                    element.classList.add(rowClass);
-                }
-            }
             container.appendChild(element);
             updateRow(element, model);
+            onCreate(element)
             row++;
         }
     }
@@ -155,15 +142,6 @@ class Page {
         ]);
     }
 
-    static updateMatchRow(element, model) {
-        element.innerHTML = repl(MATCHROW, [
-            'ID',       model.id.toString(),
-            'ROW',      (element.rowIndex+1).toString(),
-            'ROLES',    model.roles,	
-            'NAME',     model.name,
-            'NUMBER',   model.numberString,
-        ]);
-    }
 }
 
 class ClubPage extends Page {
@@ -202,12 +180,12 @@ class ClubPage extends Page {
         case 'teams-added':
             event.subject.register((e)=>this.onTeamChange(e));            
         case 'teams-removed':
-            Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, 'team-row');
+            Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, (element)=>{element.classList.add('team-row')});
             break;
         case 'members-added':
             event.subject.register((e)=>this.onMemberChange(e));
         case 'members-removed':
-            Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, 'member-row');
+            Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, (element)=>{element.classList.add('member-row')});
             break;
         }
     }
@@ -227,8 +205,8 @@ class ClubPage extends Page {
 
     show() {
         query('#club-name').innerHTML = this.club.name;
-        Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, 'team-row');
-        Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, 'member-row');
+        Page.buildTable(this.teamsTable, this.club.teams, Page.updateTeamRow, (element)=>{element.classList.add('team-row')});
+        Page.buildTable(this.membersTable, this.club.members, Page.updateMemberRow, (element)=>{element.classList.add('member-row')});
         super.show();
     }
 
@@ -382,16 +360,19 @@ class MatchPage extends Page {
         let match = this.club.createMatch(team);
         match.clockEnable = true;
         query('#match-title').innerHTML = team.name 
+        
+        // Fill bench
         this.courtContainer.innerHTML = '';
-        Page.buildTable(this.playersContainer, match.players,  MatchPage.updateBenchMember, ['player', 'on-bench']);
-        this.benchPlayers = document.querySelectorAll('#bench > div');
-        this.benchPlayers.forEach((element)=>{
+        Page.buildTable(this.benchContainer, match.players,  MatchPage.updateBenchMember, (element)=>{
+            element.classList.add('player');
+            element.classList.add('on-bench');
             element.setAttribute('draggable', 'true');
             element.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', element.model.id);
                 e.dataTransfer.effectAllowed = 'move';
             });
         });
+
         this.enableButtons('#btn-match-back', true);
         this.enableButtons(['#btn-save-startingsix', '#btn-rotate-forward', '#btn-rotate-backward', '#btn-startstop'], false);
         this.showCourtPositions(true);
@@ -408,7 +389,7 @@ class MatchPage extends Page {
     
     bindView() {
 
-        this.playersContainer = query('#bench');
+        this.benchContainer = query('#match-bench');
         this.courtContainer = query('#match-court');     
 
         this.courtContainer.addEventListener('dragover', (e) => {
@@ -499,11 +480,11 @@ class MatchPage extends Page {
     onPlayerChange(event) {
         switch(event.change) {
         case 'place':
-            let element = query(`#bench-${event.model.id}`);
+            let element = query(`#match-bench-${event.model.id}`);
             let container = null;
             switch(event.model.place) {
                 case 'bench':
-                container = query('#bench');
+                container = query('#match-bench');
                 container.appendChild(element);
                 element.classList.replace('on-court', 'on-bench');
                 break;
@@ -517,7 +498,7 @@ class MatchPage extends Page {
         case 'startingpos':
             if (this.club.match.running) {
             } else {
-                let element = query(`#bench-${event.model.id}`);
+                let element = query(`#match-bench-${event.model.id}`);
                 let startingPos = event.model.startingPos;
                 if (startingPos !== null) {
                     element.style.left = POSTABLE[startingPos].col;
@@ -555,7 +536,7 @@ class MatchPage extends Page {
     updateRotation() {
         for (let player of this.club.match.players) {
             if (player.place == 'court') {
-                let element = query(`#bench-${player.id}`);
+                let element = query(`#match-bench-${player.id}`);
                 element.style.left = POSTABLE[player.position].col;
                 element.style.top = POSTABLE[player.position].row;
             }

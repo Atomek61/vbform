@@ -282,6 +282,7 @@ p > .title ~ * {
     height: 97.5%;
     left: -1%;
     top: 0;
+    pointer-events: none;
 }
 
 .match-tpanel {
@@ -290,7 +291,7 @@ p > .title ~ * {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    z-index: 2;
+    gap: 0.5em;
 }
 
 .match-lpanel {
@@ -307,7 +308,7 @@ p > .title ~ * {
     position: relative;
 }
 
-#bench {
+#match-bench {
     margin: 0.5rem;
     padding: 0.2em 0.5em 0.2em 0.5em;
     grid-area: bench;
@@ -351,14 +352,14 @@ p > .title ~ * {
     border-radius: 50vh;
     color: hsl(49, 100%, 50%);
     cursor: move;
+    z-index: 1;
 }
 
 .on-court {
-    width: 15%;
-    aspect-ratio: 1/1;
     position: absolute; 
     transform: translate(-50%, -50%);
     transition: left 0.5s ease, top 0.5s ease;
+    width: 15%;
     aspect-ratio: 1/1;
     display: flex;
     flex-direction: column;
@@ -398,10 +399,6 @@ p > .title ~ * {
     display: none;
 }
 
-.player-draggable {
-    cursor: move;
-}
-
 .match-rpanel .btn {
     margin-left: auto;
     margin-right: auto;
@@ -419,6 +416,7 @@ p > .title ~ * {
 }
 
 #match-title {
+    z-index: 1;
     padding: 0 0.5em 0 0.5em;
     display: flex;
     align-items: center;
@@ -515,7 +513,7 @@ p > .title ~ * {
 }
 
 .show {
-    background-image: url(img/show.svg);
+    background-image: url(img/formation.svg);
 }
 
 .home {
